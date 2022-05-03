@@ -1,11 +1,8 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $titulo }}</title>
-</head>
-<body>
+@extends ('layouts.app') 
+
+@section('content')
+<h5>Bienvenido al sistema de reservas Emotiift</h5>
+
 aqui va el formulario para reservar.
 necesitamos 
 nombre
@@ -19,6 +16,5 @@ horario
 <a href="{{ route('ruta.reserve.edit')}}">editar reserva</a>
 <a href="{{ route('ruta.reserve.delete')}}">eliminar reserva</a>
 
+@endsection
 
-</body>
-</html>

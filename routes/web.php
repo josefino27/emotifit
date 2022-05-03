@@ -21,7 +21,7 @@ Route::get('/', function () {
 });
 
 // enviamos mensaje por url:
-Route::get('/reservas',function(){
+Route::get('/reservasP',function(){
     return "<h1>Bienvenido a reservas emotifit</h1>";
 });
 
@@ -29,7 +29,7 @@ Route::get('/reservas',function(){
 Route::view('/reservar','reservas');
 
 // enviar parametros por medio de la ruta
-Route::view('/reservar','reservas',['titulo'=>'emotifit']);
+Route::view('/reservas','reservas',['titulo'=>'emotifit']);
 
 // ruta mediante un controlador
 Route::get('/reservasController',[reservasController::class,'index']);
