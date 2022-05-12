@@ -15,6 +15,9 @@ class ClaseModel extends Model
         'nombreClase',
         'cupo',
         'horario',
+        // 'fecha',
+        // 'instructor',
+        // 'sede'
     ];
 
 }

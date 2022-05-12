@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ReservaController extends Controller
+class RutinaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,7 @@ class ReservaController extends Controller
      */
     public function index()
     {
-        //
+        return view('rutinas.index');
     }
 
     /**

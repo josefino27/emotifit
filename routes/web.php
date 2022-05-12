@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\reservasController;
 use Illuminate\Http\Request;
+use App\Http\Controllers\ClaseController;
+use App\Http\Controllers\RutinaController;
+use App\Http\Controllers\NutricionController;
+use App\Http\Controllers\ImcController;
 
 
 /*
@@ -68,3 +72,14 @@ Route::get('no_admin',[reservasController::class,'noAdmin'])->name('no_admin');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::group(['middleware'=>['auth']], function(){
+    Route::resource('clases',ClaseController::class);
+    Route::resource('rutinas',RutinaController::class);
+    Route::resource('reservas',reservasController::class);
+    Route::resource('nutricion',NutricionController::class);
+});
+
+
+
+// Route::post('calcularIMC',[ImcController::class,'store'])->name('calcularIMC');

@@ -74,6 +74,10 @@ span {
     text-align: center;
 }
 
+#sidebar.active b {
+    display: none;
+}
+
 #sidebar.active .sidebar-header h3,
 #sidebar.active .CTAs {
     display: none;
@@ -88,9 +92,9 @@ span {
 }
 
 #sidebar.active ul li a {
-    padding: 20px 10px;
+    padding: 10px 10px;
     text-align: center;
-    font-size: 0.85em;
+    /* font-size: 0.85em; */
 }
 
 #sidebar.active ul li a i {

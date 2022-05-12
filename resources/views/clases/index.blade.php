@@ -1,0 +1,135 @@
+@extends('layouts.app')
+
+@section('content')
+<div class="card mt-3">
+    <div class="card-header d-inline-flex">
+        <h5>Clases Emotifit</h5>
+
+        <a href="{{route('clases.create')}}" class="btn btn-primary ms-auto">
+            <i class="fas fa-plus"></i>
+            Agregar</a>
+    </div>
+</div>
+
+<div class="card-body">
+    <div class="row">
+
+        <div class="col-4">
+
+            <div class="form-group">
+
+                <a class="navbar-brand">Listar</a>
+                <select class="custom-select" id="limit" name="limit">
+                    @foreach([5,10,15,20] as $limit)
+                    <option value="{{$limit}}" @if(isset($_GET['limit']))
+                        {{($_GET['limit']==$limit)?'selected':''}}@endif>{{$limit}}</option>
+                    @endforeach
+
+                </select>
+
+                <?php
+if(isset($_GET['page'])){
+    $pag=$_GET['page'];
+
+}else{
+    $pag=1;
+}
+if(isset($_GET['limit'])){
+    $limit=$_GET['limit'];
+}else{
+    $limit=5;
+}
+$comienzo=$limit*($pag-1);
+
+?>
+
+            </div>
+
+        </div>
+
+        <div class="col-8">
+            <div class="form-group">
+                <a class="navbar-brand">Buscar</a>
+                <input class="form-control me-2" type="search" id="buscar" placeholder="Search" aria-label="Search"
+                    value="{{isset($_GET['buscar'])?$_GET['buscar']:''}}">
+
+            </div>
+        </div>
+
+    </div>
+
+
+    @if($clases->total() > 5)
+    {{$clases->links()}}
+    @endif
+
+    <div class="table-responsive">
+        <table class="table table-dark table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Id</th>
+                    <th>Nombre de Clase</th>
+                    <th>Cupo</th>
+                    <th>Fecha y Horario</th>
+                    <th>Accion</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $valor=1;
+                if($pag!=1){
+                    $valor=$comienzo+1;
+                }
+                ?>
+                @foreach($clases as $clase)
+                <tr>
+                    <th scope="row">{{$valor++}}</th>
+                    <td>{{$clase->id_clase}}</td>
+                    <td>{{$clase->nombreClase}}</td>
+                    <td>{{$clase->cupo}}</td>
+                    <td>{{$clase->horario}}</td>
+                    <td>
+                        <a href="{{route('clases.show', $clase->id_clase)}}"><i class="fas fa-eye"></i></a>
+                        
+                        <a href="{{route('clases.edit', $clase->id_clase)}}"><i class="fas fa-edit"></i></a>
+                        
+                        <button type="submit" 
+                        form="delete_{{$clase->id_clase}}"
+                        onclick="return confirm('¿estas seguro de eliminar el registro?')">
+                        <i class="fas fa-trash"></i>
+                        <form action="{{route('clases.destroy',$clase->id_clase)}}"
+                        id="delete_{{$clase->id_clase}}" 
+                        method="post" enctype="multipart/form-data"
+                        hidden>
+                            @csrf
+                            @method('delete')
+                        </form>
+                        </button>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+    <div class="card-fooder">
+        @if($clases->total() > 5)
+        {{$clases->links()}}
+        @endif
+    </div>
+</div>
+
+<!-- JS PARA FILTAR Y BUSCAR MEDIANTE PAGINADO -->
+<Script type="text/javascript">
+$('#limit').on('change', function() {
+    window.location.href = "{{ route('clases.index')}}?limit=" + $(this).val() + '&buscar=' + $('#buscar').val()
+})
+
+$('#buscar').on('keyup', function(e) {
+    if (e.keyCode == 13) {
+        window.location.href = "{{ route('clases.index')}}?limit=" + $('#limit').val() + '&buscar=' + $(this)
+            .val()
+    }
+})
+</Script>
+@endsection

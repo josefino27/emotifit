@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\ClaseModel;
+use Illuminate\Database\QueryException;
 
 class ClaseController extends Controller
 {
@@ -11,9 +13,20 @@ class ClaseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        // $clases=ClaseModel::get();
+        $clases=ClaseModel::select('*')->orderBy('id_clase','ASC');
+        $limit=(isset($request->limit)) ? $request->limit:5;
+
+        if(isset($request->buscar)){
+            $clases=$clases->where('id_clase', 'like', '%'.$request->buscar.'%')
+            ->orWhere('nombreClase','like', '%'.$request->buscar.'%')
+            ->orWhere('cupo','like', '%'.$request->buscar.'%')
+            ->orWhere('horario','like', '%'.$request->buscar.'%');
+        }
+        $clases=$clases->paginate($limit)->appends($request->all());
+        return view('clases.index', compact('clases'));
     }
 
     /**
@@ -23,7 +36,8 @@ class ClaseController extends Controller
      */
     public function create()
     {
-        //
+        
+        return view('clases.create');
     }
 
     /**
@@ -34,7 +48,18 @@ class ClaseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $clase=new ClaseModel();
+        $clase=$this->createUpdateClases($request, $clase);
+        return redirect()
+        ->route('clases.index');
+    }
+    public function createUpdateClases(Request $request,$clase)
+    {
+        $clase->nombreClase=$request->nombreClase;
+        $clase->cupo=$request->cupo;
+        $clase->horario=$request->horario;
+        $clase->save();
+        return $clase;
     }
 
     /**
@@ -45,7 +70,8 @@ class ClaseController extends Controller
      */
     public function show($id)
     {
-        //
+        $clase=ClaseModel::where('id_clase',$id)->firstOrfail();
+        return view('clases.show', compact('clase'));
     }
 
     /**
@@ -56,7 +82,8 @@ class ClaseController extends Controller
      */
     public function edit($id)
     {
-        //
+        $clase=ClaseModel::where('id_clase',$id)->firstOrfail();
+        return view('clases.edit', compact('clase'));
     }
 
     /**
@@ -68,7 +95,10 @@ class ClaseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $clase=ClaseModel::where('id_clase',$id)->firstOrfail();
+        $clase=$this->createUpdateClases($request, $clase);
+        return redirect()
+        ->route('clases.index');
     }
 
     /**
@@ -79,6 +109,14 @@ class ClaseController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $clase=ClaseModel::findOrfail($id);
+        try{
+            $clase->delete();
+            return redirect()
+            ->route('clases.index');
+        }catch(QueryException $e){
+            return redirect()
+            ->route('clases.index');
+        }
     }
 }

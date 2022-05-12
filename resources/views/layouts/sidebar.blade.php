@@ -7,16 +7,16 @@
         </div>
 
         <ul class="list-unstyled components">
-            <li class="active">
+            <li class="{{'home'==request()->path()?'active':''}}">
                 <a href="{{url('/home')}}">
                     <i class="fas fa-home"></i>
-                    Home
+                    <b>Home</b>
                 </a>
             </li>
             <li>
-            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                    <i class="fas fa-copy"></i>
-                    Ejercicios
+                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="fas fa-dumbbell"></i>
+                    <b>Ejercicios</b>
                 </a>
                 <ul class="collapse list-unstyled" id="pageSubmenu">
                     <li>
@@ -29,56 +29,51 @@
                         <a href="#">Por Equipamiento</a>
                     </li>
                 </ul>
-                <a href="#rutinaSubmenu" data-toggle="collapse" 
-                aria-expanded="false" class="dropdown-toggle">
-                    <i class="fas fa-copy"></i>
-                    Rutina
+
+            <li class="{{'rutinas'==Request::is('rutinas*')?'active':''}}">
+                <a href="{{route('rutinas.index')}}">
+                    <i class="fas fa-pencil-alt"></i>
+                    <b>Rutina</b>
                 </a>
-                <ul class="collapse list-unstyled" id="rutinaSubmenu">
-                    <li>
-                        <a href="#">crear rutina</a>
-                    </li>
-                </ul>
-                
-                <a href="#serviceSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                    <i class="fas fa-copy"></i>
-                    Servicios
-                </a>
-                <ul class="collapse list-unstyled" id="serviceSubmenu">
-                    <li>
-                        <a href="#">Clases</a>
-                    </li>
-                    <li>
-                        <a href="{{url('/reservas')}}">Reservas</a>
-                    </li>
-                    
-                </ul>
+
             </li>
-            <li>
-            <a href="#nutricionSubmenu" data-toggle="collapse" 
-                aria-expanded="false" class="dropdown-toggle">
-                    <i class="fas fa-copy"></i>
-                    Nutricion
+
+
+
+
+            <li class="{{'clases'==Request::is('clases*')?'active':''}}">
+
+                <a href="{{route('clases.index')}}">
+                    <i class="fas fa-video"></i>
+                    <b>Clases</b>
                 </a>
-                <ul class="collapse list-unstyled" id="nutricionSubmenu">
-                    <li>
-                        <a href="#">Agregar Lista de Mercado</a>
-                    </li>
-                    <li>
-                        <a href="#">consulta IMC</a>
-                    </li>
-                </ul>
+            </li>
+            <li class="{{'reservas'==Request::is('reservas*')?'active':''}}">
+
+                <a href="{{route('reservas.index')}}">
+                    <i class="fas fa-save"></i>
+                    <b>Reservas</b>
+                </a>
+            </li>
+
+
+            </li>
+            <li class="{{'reservas'==Request::is('nutricion*')?'active':''}}">
+                <a href="{{route('nutricion.index')}}">
+                    <i class="fas fa-utensils"></i>
+                    <b>Nutricion</b>
+                </a>
             </li>
             <li>
                 <a href="#">
-                    <i class="fas fa-image"></i>
-                    Productos
+                    <i class="fas fa-people-carry"></i>
+                    <b>Productos</b>
                 </a>
             </li>
             <li>
                 <a href="#">
                     <i class="fas fa-paper-plane"></i>
-                    Contacto
+                    <b>Contacto</b>
                 </a>
             </li>
         </ul>
@@ -105,9 +100,13 @@
     </div> -->
 </div>
 <!-- jQuery CDN - Slim version (=without AJAX) -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+</script>
 <!-- Bootstrap JS -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+    integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous">
+</script>
 
 <script type="text/javascript">
 $(document).ready(function() {

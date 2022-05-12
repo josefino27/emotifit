@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class reservasController extends Controller
+class NutricionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,19 +13,10 @@ class reservasController extends Controller
      */
     public function index()
     {
-        return view('reservas.index');
-    }
 
-    public function mostrarClases(){
-        return 'clases disponibles';
-    }
+       
+        return view('nutricion.index');
 
-    function noAdmin(){
-        return 'no tienes acceso a las clases disponibles';
-    }
-
-    public function recibirParametros($id){
-        return "id recibido es: ".$id;
     }
 
     /**
@@ -35,7 +26,7 @@ class reservasController extends Controller
      */
     public function create()
     {
-        return "estoy en la funcion create";
+        //
     }
 
     /**
@@ -46,7 +37,25 @@ class reservasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $altura=$request->altura;
+        $peso=$request->peso;
+        $alt2=$altura/100;
+        $altura=$alt2*$alt2;
+        $imc=$peso/$altura;
+        
+        if($imc>=30){
+            $m = "Obesidad";
+         }if($imc>=25 && $imc<=29.9){
+            $m = "sobrepeso";
+         }
+         if($imc>18.5 && $imc<=24.9){
+             $m="peso ideal";
+         }
+         if($imc<=18.5){
+             $m="bajo de peso";
+         }
+        return view('nutricion.index',['imc'=>$imc,'m'=>$m]);
+    
     }
 
     /**
@@ -55,9 +64,9 @@ class reservasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
-        return "estoy en la funcion show";
+        //
     }
 
     /**
@@ -66,9 +75,9 @@ class reservasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit($id)
     {
-        return "estoy en la funcion edit";
+        //
     }
 
     /**
@@ -89,8 +98,8 @@ class reservasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy()
+    public function destroy($id)
     {
-        return "estoy en la funcion destroy";
+        //
     }
 }

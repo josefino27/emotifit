@@ -212,7 +212,7 @@ blockquote {
 
 b,
 strong {
-  font-weight: bolder;
+  font-weight: normal;
 }
 
 small, .small {
@@ -7813,7 +7813,7 @@ textarea.form-control-lg {
 
 .bg-primary {
   --bs-bg-opacity: 1;
-  background-color: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity)) !important;
+  background-color: black;
 }
 
 .bg-secondary {
@@ -11299,6 +11299,7 @@ html {
 
 .page-section {
   padding: 6rem 0;
+  background-color: #0dcaf0;
 }
 .page-section .page-section-heading {
   font-size: 2.25rem;
@@ -11447,7 +11448,7 @@ html {
   font-size: 1.25rem;
 }
 .masthead .masthead-avatar {
-  width: 15rem;
+  width: 20rem;
 }
 
 @media (min-width: 992px) {
