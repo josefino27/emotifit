@@ -203,6 +203,7 @@ a.article:hover {
     /* padding: 20px; */
     min-height: 100vh;
     transition: all 0.3s;
+    background: #0a0a0a;
 }
 
 /* ---------------------------------------------------

@@ -33,12 +33,16 @@
 <body>
     <div id="app" class="wrapper">
         @guest
+
         @else
+
         @include('layouts.sidebar')
+
         @endguest
         <div id="content">
         @include('layouts.navhead')
         <main>
+            @include('components.flash_alerts')
             @yield('content')
         </main>
         </div>
@@ -48,5 +52,4 @@
  integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" 
  crossorigin="anonymous">
 </script>
-  
 </html>

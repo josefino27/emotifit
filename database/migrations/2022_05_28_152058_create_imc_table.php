@@ -13,15 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('clases', function (Blueprint $table) {
-            $table->increments('id_clase');
-            $table->string('nombreClase');
-            $table->string('cupo');
-            $table->Date('fecha');
-            $table->time('comienza');
-            $table->time('termina');
-            $table->text('descripcion');
-            $table->string('imagen');
+        Schema::create('imc', function (Blueprint $table) {
+            $table->increments('id-imc');
+            $table->string('resultado'); 
+            $table->integer('id-usuario')->unsigned();
+            $table->foreign('id-usuario')->references('id')->on('users');
             $table->timestamps();
         });
     }
@@ -33,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('clases');
+        Schema::dropIfExists('imc');
     }
 };

@@ -9,7 +9,6 @@
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
         </button>
-
         @else
         <button type="button" id="sidebarCollapse" class="btn btn-primary">
             <i class="fas fa-align-left"></i>
@@ -20,16 +19,12 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         @endguest
-
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav me-auto">
             </ul>
-
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ms-auto ">
-
-
                 <!-- Authentication Links -->
                 @guest
                 @if (Route::has('login'))
@@ -49,14 +44,12 @@
                         data-bs-toggle="dropdown" aria-expanded="false">
                         {{ Auth::user()->name }}
                     </a>
-
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li>
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                 {{ Auth::user()->name }} - {{ __('Cerrar Sesion') }}
                             </a>
-
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
                             </form>
@@ -65,10 +58,6 @@
                 </li>
                 @endguest
             </ul>
-
         </div>
-
     </div>
-
-
 </nav>

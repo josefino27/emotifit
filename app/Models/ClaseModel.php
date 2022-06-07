@@ -14,7 +14,11 @@ class ClaseModel extends Model
     protected $fillable = [
         'nombreClase',
         'cupo',
-        'horario',
+        'fecha',
+        'comienza',
+        'termina',
+        'descripcion',
+        'imagen'
         // 'fecha',
         // 'instructor',
         // 'sede'

@@ -15,7 +15,20 @@
         @include('clases.form.form')
        
     </div>
-
+    <div class="card-body">
+        <div class="row">
+            <div class="col-6">
+            <img src="{{(isset($clase))?$clase->imagen:$clase->imagen->getClientOriginalName()}}">
+                </div>
+                <div class="col-6">
+                    <h5>Descripcion</h5>
+                    <span>
+                        {{(isset($clase))?$clase->descripcion:old('descripcion')}}
+                        {{(isset($clase))?$clase->imagen:$clase->imagen->getClientOriginalName()}}
+                    </span>
+                </div>
+            </div>
+        </div>
 </div>
 
 @endsection
