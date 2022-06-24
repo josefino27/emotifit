@@ -16,6 +16,6 @@ class ClaseModelSeeder extends Seeder
      */
     public function run()
     {
-        ClaseModel::factory(5)->create();
+
     }
 }
