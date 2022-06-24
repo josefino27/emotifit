@@ -10,7 +10,7 @@ class UserIndex extends Component
 {
     use WithPagination;
 
-    public $search;
+    public $buscar;
     public $sort='id';
     public $direction='asc';
 
@@ -23,8 +23,8 @@ class UserIndex extends Component
 
     public function render()
     {
-        $users = User::where('name','like','%'.$this->search.'%')
-        ->orwhere('email','like','%'.$this->search.'%')
+        $users = User::where('name','like','%'.$this->buscar.'%')
+        ->orwhere('email','like','%'.$this->buscar.'%')
         ->orderBy($this->sort,$this->direction)
         ->paginate();
 

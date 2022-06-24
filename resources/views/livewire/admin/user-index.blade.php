@@ -1,7 +1,7 @@
 <div>
 
     <div class="card-header">
-        <input wire:model="search" class="form-control" placeholder="Busquedad por nombre o correo">
+        <input wire:model="buscar" class="form-control" placeholder="Busquedad por nombre o correo">
     </div>
 
     @if ($users->count())
