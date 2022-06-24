@@ -14,10 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('rutinas', function (Blueprint $table) {
-            $table->increments('id-rutina');
-            $table->string('nombre-rutina');
-            $table->string('dia-entreno');
-            $table->integer('tiempo-rutina');
+            $table->increments('id_rutina');
+            $table->string('nombre_rutina');
+            $table->string('dia_entreno');
+            $table->integer('tiempo_rutina');
             $table->timestamps();
         });
     }

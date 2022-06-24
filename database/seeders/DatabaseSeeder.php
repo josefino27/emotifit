@@ -4,8 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\ClaseModel;
-use App\Models\ReservaModel;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,9 +15,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory(5)->create();
-        ClaseModel::factory(5)->create();
-        ReservaModel::factory(5)->create();
+        
+        $this->call(RoleSeeder::class);
+        $this->call(UserSeeder::class);
+       // ClaseModel::factory(5)->create();
+       // ReservaModel::factory(5)->create();
 
     }
 }
