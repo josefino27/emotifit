@@ -28,6 +28,9 @@
                     <li>
                         <a href="#">Por Equipamiento</a>
                     </li>
+                    <li>
+                        <a href="{{route('ejercicios.index')}}">Por Emocion</a>
+                    </li>
                 </ul>
 
             <li class="{{'rutinas'==Request::is('rutinas*')?'active':''}}">

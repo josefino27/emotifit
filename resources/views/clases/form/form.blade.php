@@ -14,8 +14,32 @@
     </div>
     <div class="col-12">
         <div class="form-group">
-            <label for="">Horario</label>
-            <input type="text" class="form-control" name="horario" value="{{(isset($clase))?$clase->horario:old('horario')}}" required>
+            <label for="">Fecha</label>
+            <input type="date" class="form-control" name="fecha" value="{{(isset($clase))?$clase->fecha:old('fecha')}}" required>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="form-group">
+            <label for="">comienza</label>
+            <input type="time" class="form-control" name="comienza" value="{{(isset($clase))?$clase->comienza:old('comienza')}}" required>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="form-group">
+            <label for="">termina</label>
+            <input type="time" class="form-control" name="termina" value="{{(isset($clase))?$clase->termina:old('termina')}}" required>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="form-group">
+            <label for="">descripcion</label>
+            <input type="text" class="form-control" name="descripcion" value="{{(isset($clase))?$clase->descripcion:old('descripcion')}}" required>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="form-group">
+            <label for="">imagen</label>
+            <input type="file" accept="image/*" class="form-control" name="imagen" value="{{(isset($clase))?$clase->imagen:old('imagen')}}" >
         </div>
     </div>
 <div>

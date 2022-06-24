@@ -5,7 +5,7 @@
     <div class="card-header d-inline-flex">
         <h5>Clases Emotifit</h5>
 
-        <a href="{{route('clases.create')}}" class="btn btn-primary ms-auto">
+        <a href="{{route('clases.create')}}" class="btn btn-primary ms-auto ">
             <i class="fas fa-plus"></i>
             Agregar</a>
     </div>
@@ -18,7 +18,7 @@
 
             <div class="form-group">
 
-                <a class="navbar-brand">Listar</a>
+                <a class="navbar-brand text-white">Listar</a>
                 <select class="custom-select" id="limit" name="limit">
                     @foreach([5,10,15,20] as $limit)
                     <option value="{{$limit}}" @if(isset($_GET['limit']))
@@ -49,7 +49,7 @@ $comienzo=$limit*($pag-1);
 
         <div class="col-8">
             <div class="form-group">
-                <a class="navbar-brand">Buscar</a>
+                <a class="navbar-brand text-white">Buscar</a>
                 <input class="form-control me-2" type="search" id="buscar" placeholder="Search" aria-label="Search"
                     value="{{isset($_GET['buscar'])?$_GET['buscar']:''}}">
 
@@ -71,7 +71,9 @@ $comienzo=$limit*($pag-1);
                     <th>Id</th>
                     <th>Nombre de Clase</th>
                     <th>Cupo</th>
-                    <th>Fecha y Horario</th>
+                    <th>Fecha</th>
+                    <th>Comienza</th>
+                    <th>Termina</th>
                     <th>Accion</th>
                 </tr>
             </thead>
@@ -88,7 +90,9 @@ $comienzo=$limit*($pag-1);
                     <td>{{$clase->id_clase}}</td>
                     <td>{{$clase->nombreClase}}</td>
                     <td>{{$clase->cupo}}</td>
-                    <td>{{$clase->horario}}</td>
+                    <td>{{$clase->fecha}}</td>
+                    <td>{{$clase->comienza}}</td>
+                    <td>{{$clase->termina}}</td>
                     <td>
                         <a href="{{route('clases.show', $clase->id_clase)}}"><i class="fas fa-eye"></i></a>
                         

@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
-class RutinaController extends Controller
+class EjercicioController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,7 @@ class RutinaController extends Controller
      */
     public function index()
     {
-        return view('rutinas.index');
+        return view('ejercicios.index');
     }
 
     /**
@@ -23,7 +24,7 @@ class RutinaController extends Controller
      */
     public function create()
     {
-        return view('rutinas.create');
+        return view('ejercicios.create');
     }
 
     /**
@@ -34,7 +35,10 @@ class RutinaController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $imagenes=$request->file('imagen-ejercicio')->store('public/img');
+        $url=Storage::url($imagenes);
+        return $url;
+        File::crete(['url'=>$url]);
     }
 
     /**

@@ -7,6 +7,7 @@ use App\Http\Controllers\ClaseController;
 use App\Http\Controllers\RutinaController;
 use App\Http\Controllers\NutricionController;
 use App\Http\Controllers\ImcController;
+use App\Http\Controllers\EjercicioController;
 
 
 /*
@@ -78,6 +79,7 @@ Route::group(['middleware'=>['auth']], function(){
     Route::resource('rutinas',RutinaController::class);
     Route::resource('reservas',reservasController::class);
     Route::resource('nutricion',NutricionController::class);
+    Route::resource('ejercicios',EjercicioController::class);
 });
 
 

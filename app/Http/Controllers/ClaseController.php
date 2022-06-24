@@ -51,17 +51,21 @@ class ClaseController extends Controller
         $clase=new ClaseModel();
         $clase=$this->createUpdateClases($request, $clase);
         return redirect()
-        ->route('clases.index');
+        ->route('clases.index')
+        ->with('message','Registro Creado Satisfactoriamente.');
     }
     public function createUpdateClases(Request $request,$clase)
     {
         $clase->nombreClase=$request->nombreClase;
         $clase->cupo=$request->cupo;
-        $clase->horario=$request->horario;
+        $clase->fecha=$request->fecha;
+        $clase->comienza=$request->comienza;
+        $clase->termina=$request->termina;
+        $clase->descripcion=$request->descripcion;
+        if($request->hasfile('imagen')){$clase->imagen=$request->file('imagen')->store('/portafolio');}
         $clase->save();
         return $clase;
     }
-
     /**
      * Display the specified resource.
      *
@@ -98,7 +102,8 @@ class ClaseController extends Controller
         $clase=ClaseModel::where('id_clase',$id)->firstOrfail();
         $clase=$this->createUpdateClases($request, $clase);
         return redirect()
-        ->route('clases.index');
+        ->route('clases.index')
+        ->with('message','Registro Actualizado Satisfactoriamente.');
     }
 
     /**
@@ -113,10 +118,12 @@ class ClaseController extends Controller
         try{
             $clase->delete();
             return redirect()
-            ->route('clases.index');
+            ->route('clases.index')
+            ->with('danger','Registro Eliminado.');
         }catch(QueryException $e){
             return redirect()
-            ->route('clases.index');
+            ->route('clases.index')
+            ->with('warning','El Registro No Puede Ser Eliminado.');
         }
     }
 }
