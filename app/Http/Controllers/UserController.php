@@ -10,11 +10,7 @@ use Spatie\Permission\Models\Role;
 class UserController extends Controller
 {
 
-    public function __construct(){
 
-        $this->middleware('can:users');
-        
-    }
 
     public function index()
     {

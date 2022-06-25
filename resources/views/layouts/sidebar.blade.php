@@ -13,6 +13,25 @@
                     <b>Home</b>
                 </a>
             </li>
+
+       
+            <li class="{{'home'==Request::is('users*')?'active':''}}">
+                <a href="{{route('users.index')}}">
+                    <i class="fas fa-home"></i>
+                    <b>Usuarios</b>
+                </a>
+            </li>
+
+
+            <li class="{{'permisos'==Request::is('role*')?'active':''}}">
+                <a href="{{route('role.index')}}">
+                    <i class="fas fa-pencil-alt"></i>
+                    <b>Roles y Permisos</b>
+                </a>
+            </li>
+
+
+
             <li>
                 <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                     <i class="fas fa-dumbbell"></i>
@@ -40,9 +59,15 @@
                 </a>
 
             </li>
+            @can('users')
+            <li class="{{'rutinas'==Request::is('musculos*')?'active':''}}">
+                <a href="{{route('musculos.index')}}">
+                    <i class="fas fa-pencil-alt"></i>
+                    <b>Musculos</b>
+                </a>
 
-
-
+            </li>
+            @endcan
 
             <li class="{{'clases'==Request::is('clases*')?'active':''}}">
 
