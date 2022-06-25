@@ -16,7 +16,7 @@
 
             @can('users')
             <li class="{{'home'==Request::is('users*')?'active':''}}">
-                <a href="{{url('users')}}">
+                <a href="{{url('user.index')}}">
                     <i class="fas fa-home"></i>
                     <b>Usuarios</b>
                 </a>

@@ -58,7 +58,7 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
-        $role=Role::all();
+
         return view('roles.show', compact('role'));
     }
 
@@ -70,7 +70,6 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-
         $permissions = Permission::all();
         $role=Role::where('id',$id)->firstOrfail();
         return view('roles.edit', compact('role','permissions'));

@@ -3,7 +3,7 @@
 @section('content')
 <div class="card mt-3">
 
-    @can('ejercicios.create')
+    @can('users')
     
     <div class="card-header d-inline-flex">
         <h5>Ejercicios Emotifit</h5>
@@ -16,6 +16,7 @@
     @endcan
 
     @livewire('admin.ejercicios')
+
 </div>
 
 @endsection

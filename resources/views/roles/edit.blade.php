@@ -9,7 +9,7 @@
             Volver
         </a>
     </div>
-@if(isset($_GET['name']))
+
 
     <div class="card-body">
         <form action="{{route('role.update',$role->id)}}" method="POST" enctype="multipart/form-data" id="crear">
@@ -24,6 +24,6 @@
     </div>
 </div>
 
-@endif
+
 
 @endsection

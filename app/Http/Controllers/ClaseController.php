@@ -62,7 +62,7 @@ class ClaseController extends Controller
         $clase->comienza=$request->comienza;
         $clase->termina=$request->termina;
         $clase->descripcion=$request->descripcion;
-        if($request->hasfile('imagen')){$clase->imagen=$request->file('imagen')->store('/portafolio');}
+        if($request->hasfile('imagen')){$clase->imagen=$request->file('imagen')->store('portafolio','public');}
         $clase->save();
         return $clase;
     }

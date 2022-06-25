@@ -3,7 +3,7 @@
 @section('content')
 <div class="card mt-3">
     <div class="card-header d-inline-flex">
-        <h5>Role: {{$clase->id_clase}}</h5>
+        <h5>Role: {{$role->id}}</h5>
         <a href="{{route('role.index')}}" class="btn btn-primary ms-auto">
             <i class="fas fa-arrow-left"></i>
             Volver
@@ -12,7 +12,7 @@
 
     <div class="card-body">
 
-        @include('clases.form.form')
+        @include('roles.form.form')
        
     </div>
     

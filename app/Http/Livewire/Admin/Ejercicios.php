@@ -20,6 +20,7 @@ class Ejercicios extends Component
     public function updatingSearch(){
         $this->resetpage();
     }
+
     public function render()
     {
         $ejercicios = EjercicioModel::where('nombre_ejercicio','like','%'.$this->search.'%')

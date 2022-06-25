@@ -87,7 +87,7 @@ Route::group(['middleware'=>['auth']], function(){
     Route::resource('ejercicios',EjercicioController::class);
     Route::resource('permisos',permisosController::class);
     Route::resource('role',RoleController::class);
-    Route::get('users',UserIndex::class);
+    Route::get('user',UserIndex::class);
     Route::resource('users',UserController::class);
     Route::resource('musculos',MusculoController::class);
 

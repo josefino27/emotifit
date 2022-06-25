@@ -26,9 +26,7 @@
             <label for="">Imagen</label>
             <input type="file" class="form-control" name="imagen_ejercicio" accept="image/*"
                 value="{{ isset($imagenes) ? $imagenes->imagen_ejercicio : old('imagen_ejercicio') }}" required>
-
         </div>
-
 
     </div>
     @if (isset($ejercicio))
@@ -41,11 +39,6 @@
 
         </div>
     @endif
-        
-{{-- <div class="col-12">
-        <div class="form-group">
-            <label for="">Video</label>
-            <input type="file" class="form-control" name="video-ejercicio" value="{{(isset($ejercicio))?$ejercicio->video:old('video')}}">
-        </div> --}}
+
 </div>
 <div>
