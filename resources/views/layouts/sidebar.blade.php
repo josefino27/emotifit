@@ -14,22 +14,23 @@
                 </a>
             </li>
 
-       
+            @can('users')
             <li class="{{'home'==Request::is('users*')?'active':''}}">
-                <a href="{{route('users.index')}}">
+                <a href="{{url('users')}}">
                     <i class="fas fa-home"></i>
                     <b>Usuarios</b>
                 </a>
             </li>
+            @endcan
 
-
+            @can('roles')
             <li class="{{'permisos'==Request::is('role*')?'active':''}}">
                 <a href="{{route('role.index')}}">
                     <i class="fas fa-pencil-alt"></i>
                     <b>Roles y Permisos</b>
                 </a>
             </li>
-
+            @endcan
 
 
             <li>

@@ -18,14 +18,17 @@
     <div class="card-body">
         <div class="row">
             <div class="col-6">
-            <img src="{{(isset($clase))?$clase->imagen:$clase->imagen->getClientOriginalName()}}">
+            <img src="{{asset('storage').'/'.$clase->imagen}}" width="200">
                 </div>
                 <div class="col-6">
                     <h5>Descripcion</h5>
-                    <span>
-                        {{(isset($clase))?$clase->descripcion:old('descripcion')}}
-                        {{(isset($clase))?$clase->imagen:$clase->imagen->getClientOriginalName()}}
-                    </span>
+                    <div class="form-group">
+                        <span>
+                            <input type="file" class="form-control" name="imagen" accept="image/*" value="{{isset($clase)?$clase->imagen:old('imagen')}}" required>
+                           <span width="200">{{asset('storage').'/'.$clase->imagen}}</span>
+                        </span>
+                    </div>
+
                 </div>
             </div>
         </div>

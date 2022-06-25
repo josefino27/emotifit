@@ -9,13 +9,13 @@ class RutinaEjercicioModel extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'id-rutina-ejercicio';
-    protected $table = 'rutinas-ejercici';
+    protected $primaryKey = 'id_rutina_ejercicio';
+    protected $table = 'rutinas_ejercicio';
     protected $fillable = [
-        'id-rutina',
-        'id-ejercicio',
-        'intervalo-descanso',
-        'id-rutina',
-        'id-ejercicio'
+        'id_rutina',
+        'id_ejercicio',
+        'intervalo_descanso',
+        'id_rutina',
+        'id_ejercicio'
     ];
 }

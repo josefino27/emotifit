@@ -9,12 +9,12 @@ class RutinaModel extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'id-rutina';
+    protected $primaryKey = 'id_rutina';
     protected $table = 'rutinas';
     protected $fillable = [
-        'nombre-rutina',
-        'dia-entreno',
-        'tiempo-rutina'
+        'nombre_rutina',
+        'dia_entreno',
+        'tiempo_rutina'
     ];
 
 }

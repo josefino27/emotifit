@@ -3,8 +3,8 @@
 @section('content')
 <div class="card mt-3">
     <div class="card-header d-inline-flex">
-        <h5>Clase Id: {{$clase->id_clase}}</h5>
-        <a href="{{route('clases.index')}}" class="btn btn-primary ms-auto">
+        <h5>Ejercicio: {{$ejercicio->nombre_ejercicio}}</h5>
+        <a href="{{route('ejercicios.index')}}" class="btn btn-primary ms-auto">
             <i class="fas fa-arrow-left"></i>
             Volver
         </a>
@@ -12,8 +12,18 @@
 
     <div class="card-body">
 
-        @include('clases.form.form')
+        @include('ejercicios.form.form')
        
+    </div>
+
+    <div class="card mt-3">
+        <div class="card-header d-inline-flex">
+            @foreach ($ejercicio as $ejercice)
+
+            <img src="" alt="">
+                
+            @endforeach
+        </div>
     </div>
 
 </div>

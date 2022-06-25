@@ -39,7 +39,15 @@
     <div class="col-12">
         <div class="form-group">
             <label for="">imagen</label>
-            <input type="file" accept="image/*" class="form-control" name="imagen" value="{{(isset($clase))?$clase->imagen:old('imagen')}}" >
+            <input type="file" accept="image/*" class="form-control" name="imagen" value="{{(isset($clase))?$clase->imagen:old('imagen')}}" required>
+            @if(isset($clase))<td>
+                <img src="{{ asset('storage').'/'.$clase->imagen }}" width="200">
+                <span>
+                    <h3>Descripcion: </h3>
+                    {{$clase->descripcion}}
+                </span>
+            </td>
+            @endif
         </div>
     </div>
 <div>

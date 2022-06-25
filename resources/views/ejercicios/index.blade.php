@@ -2,13 +2,20 @@
 
 @section('content')
 <div class="card mt-3">
+
+    @can('ejercicios.create')
+    
     <div class="card-header d-inline-flex">
         <h5>Ejercicios Emotifit</h5>
-
+     
         <a href="{{route('ejercicios.create')}}" class="btn btn-primary ms-auto ">
             <i class="fas fa-plus"></i>
             Agregar</a>
     </div>
+
+    @endcan
+
+    @livewire('admin.ejercicios')
 </div>
 
 @endsection

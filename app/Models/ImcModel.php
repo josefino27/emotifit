@@ -8,11 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class ImcModel extends Model
 {
     use HasFactory;
-    protected $primaryKey = 'id-imc';
+    protected $primaryKey = 'id_imc';
     protected $table = 'imc';
     protected $fillable = [
         'resultado',
-        'id-usuario'
+        'id_usuario'
     ];
 
 }

@@ -9,11 +9,12 @@ class EjercicioModel extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'id-ejercicio';
+    protected $primaryKey = 'id_ejercicio';
     protected $table = 'ejercicios';
     protected $fillable = [
-        'nombre-ejercicio',
+        'nombre_ejercicio',
         'descripcion',
-        'id-musculo'
+        'id_musculo',
+        'imagen_ejercicio'
     ];
 }
