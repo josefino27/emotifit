@@ -1,0 +1,13 @@
+<hr>
+<div *ngIf = "nombre=='Calistenia'" >
+    <h1 [style.background]="'green'" [style.color]="'yellow'"><p>Hoy es clase de {{nombre}}</p></h1>
+</div>
+<div *ngIf = "nombre!='Calistenia'" >
+    <h1 [style.background]="'red'" [style.color]="'white'"><span>no hay calistenia hoy</span></h1>
+</div>
+<hr>
+<div>
+    <button (click)="aumentarCupo()" >Aumentar Cupo</button>
+    <button (click)="disminuirCupo()" >Disminuir Cupo</button>
+    <h2><span>Cupos {{cupo}}</span></h2>
+</div>
