@@ -2,17 +2,18 @@
 
 namespace App\Http\Livewire\Admin;
 
-use App\Models\User;
 use Livewire\Component;
+use App\Models\ReservaModel;
 use Livewire\WithPagination;
 
-class UserIndex extends Component
+class Reservas extends Component
 {
     use WithPagination;
 
     public $buscar;
-    public $sort='id';
+    public $sort='id_reserva';
     public $direction='asc';
+
 
     protected $paginationTheme="bootstrap";
 
@@ -20,23 +21,25 @@ class UserIndex extends Component
         $this->resetpage();
     }
 
-    public function paginationView(){
-        return 'vendor.livewire.bootstrap';
-    }
-
     public function render()
     {
         if(strlen($this->buscar) > 0){
-            $users = User::where('name','like','%'.$this->buscar.'%')
+            $reservas = ReservaModel::join('users','reservas.id_usuario','=','users.id')
+            ->join('clases','reservas.id_clase','=','clases.id_clase')
+            ->where('clases.nombreClase','like','%'.$this->buscar.'%')
             ->orderBy($this->sort,$this->direction)->paginate(10);
         }else{
-            $users = User::orderBy($this->sort,$this->direction)->paginate(5);
+            $reservas = ReservaModel::join('users','reservas.id_usuario','=','users.id')
+            ->join('clases','reservas.id_clase','=','clases.id_clase')
+            ->select('reservas.*','users.*','clases.*')
+            ->orderBy($this->sort,$this->direction)
+            ->paginate(10);
         }
 
 
-        return view('livewire.admin.user-index' ,compact('users'))->layout('users.index');
+        return view('livewire.admin.reservas' ,compact('reservas'))->layout('reservas.index');
     }
-
+    
     public function order($sort){
         if($this->sort == $sort){
             if($this->direction == 'desc'){

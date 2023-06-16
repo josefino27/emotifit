@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\EjercicioModel;
+use App\Models\MusculoModel;
 
 class EjercicioController extends Controller
 {
@@ -32,7 +33,9 @@ class EjercicioController extends Controller
      */
     public function create()
     {
-        return view('ejercicios.create');
+        $musculo = MusculoModel::all();
+        
+        return view('ejercicios.create',compact('musculo'));
     }
 
     /**
@@ -45,8 +48,9 @@ class EjercicioController extends Controller
     {
         $ejercicio = new EjercicioModel();
         $ejercicio=$this->createUpdateEjercicios($request, $ejercicio);
-        // $imagenes=$request->file('imagen_ejercicio')->store('public/img');
-        // $url=Storage::url($imagenes);
+        $imagenes=$request->file('imagen_ejercicio')->store('public/img');
+        $url=Storage::url($imagenes);
+        // return dd($request->id_musculo);
         return view(('ejercicios.index'), compact('ejercicio'));
     }                                                                           
     public function createUpdateEjercicios(Request $request,$ejercicio)

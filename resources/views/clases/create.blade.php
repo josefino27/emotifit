@@ -9,13 +9,12 @@
                 Volver
             </a>
         </div>
-
         <div class="card-body">
             <form action="{{ route('clases.store') }}" method="POST" enctype="multipart/form-data" id="crear">
                 @include('clases.form.form')
             </form>
         </div>
-        <div class="card-footer">
+        <div class="card-fooder">
             <button class="btn btn-primary" form="crear">
                 <i class="fas fa-plus"></i> Crear
             </button>

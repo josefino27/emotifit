@@ -12,7 +12,6 @@
         </div>
     </div>
 
-
     <div class="card-body">
         <div class="row">
 
@@ -51,23 +50,16 @@
                     $comienzo = $limit * ($pag - 1);
                     
                     ?>
-
                 </div>
-
             </div>
-
             <div class="col-8">
                 <div class="form-group">
                     <a class="navbar-brand text-white">Buscar</a>
                     <input class="form-control me-2" type="search" id="buscar" placeholder="Search" aria-label="Search"
                         value="{{ isset($_GET['buscar']) ? $_GET['buscar'] : '' }}">
-
                 </div>
             </div>
-
         </div>
-
-
         @if ($clases->total() > 5)
             {{ $clases->links() }}
         @endif
@@ -112,6 +104,18 @@
                             </td>
 
                             <td width="100px">
+                                <form action="{{route('reservas.store')}}" method="POST" enctype="multipart/form-data" id="{{$valor}}">
+                                    @csrf
+                                    <input type="text" name="id_usuario" value="{{Auth::user()->id}}" hidden>
+                                    <input type="text" name="id_clase" value="{{$clase->id_clase}}" hidden>
+                                </form>
+                                @if($clase->cupo === 0)
+                                @else
+                                <button class="btn-primary" form="{{$valor}}">Reservar</button>
+                                @endif
+                            </td>
+
+                            <td>
                                 <a href="{{ route('clases.show', $clase->id_clase) }}"><i class="fas fa-eye"></i></a>
                                 @can('users')
                                     <a href="{{ route('clases.edit', $clase->id_clase) }}"><i class="fas fa-edit"></i></a>
@@ -149,9 +153,7 @@
 
         $('#buscar').on('keyup', function(e) {
             if (e.keyCode == 13) {
-                window.location.href = "{{ route('clases.index') }}?limit=" + $('#limit').val() + '&buscar=' + $(
-                        this)
-                    .val()
+                window.location.href = "{{ route('clases.index') }}?limit=" + $('#limit').val() + '&buscar=' + $(this).val()
             }
         })
     </Script>

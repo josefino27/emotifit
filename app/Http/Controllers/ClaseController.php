@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\ClaseModel;
 use Illuminate\Database\QueryException;
+use Illuminate\Http\Response;
 
 class ClaseController extends Controller
 {
@@ -15,7 +16,14 @@ class ClaseController extends Controller
      */
     public function index(Request $request)
     {
-        // $clases=ClaseModel::get();
+        // respuesta para api
+        // $clases=ClaseModel::all();
+        // $response = response()->json($clases,Response::HTTP_OK);
+        // $response->header('Access-Control-Allow-Origin', '*');
+        // $response->header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
+        // $response->header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    
+        // return $response;
         $clases=ClaseModel::select('*')->orderBy('id_clase','ASC');
         $limit=(isset($request->limit)) ? $request->limit:5;
 
@@ -36,7 +44,6 @@ class ClaseController extends Controller
      */
     public function create()
     {
-        
         return view('clases.create');
     }
 

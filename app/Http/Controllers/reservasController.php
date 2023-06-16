@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ClaseModel;
+use App\Models\ReservaModel;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 class reservasController extends Controller
@@ -36,7 +39,6 @@ class reservasController extends Controller
     public function create()
     {
         return view('reservas.create');
-
     }
 
     /**
@@ -47,7 +49,28 @@ class reservasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $reserva = new ReservaModel();
+        $clase = ClaseModel::find($request->id_clase);
+        if($clase->cupo === 0){
+             return redirect()->route('clases.index')->with('warning','No hay mas cupos disponibles');
+        }else{
+
+            $clase->cupo = $clase->cupo - 1;
+            $reserva = $this->createUpdateReserva($request,$reserva);
+            $clase->save();
+            return redirect()->route('reservas.index')->with('message','Reserva Creada Satisfactoriamente.');
+
+        }
+       
+    }
+
+    public function createUpdateReserva(Request $request,$reserva){
+
+        $reserva->id_clase = $request->id_clase;
+        $reserva->id_usuario = $request->id_usuario;
+        $reserva->save();
+        return $reserva;
+
     }
 
     /**
@@ -56,9 +79,19 @@ class reservasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
-        return "estoy en la funcion show";
+        
+        $reserva=ReservaModel::join('users','reservas.id_usuario','=','users.id')
+        ->join('clases','reservas.id_clase','=','clases.id_clase')
+        ->where('reservas.id_reserva',$id)->firstOrfail();
+        return view('reservas.show', compact('reserva'));
+    }
+    public function reservarClase($id)
+    {
+        
+        $reserva=ReservaModel::where('id_clase',$id)->firstOrfail();
+        return view('reservas.show', compact('reserva'));
     }
 
     /**
@@ -67,9 +100,13 @@ class reservasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit($id)
     {
-        return "estoy en la funcion edit";
+        $reserva=ReservaModel::join('users','reservas.id_usuario','=','users.id')
+        ->join('clases','reservas.id_clase','=','clases.id_clase')
+        ->where('reservas.id_reserva',$id)->firstOrfail();
+        // dd($reserva);
+        return view('reservas.edit', compact('reserva'));    
     }
 
     /**
@@ -81,7 +118,11 @@ class reservasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $reserva=ReservaModel::where('id_reserva',$id)->firstOrfail();
+        $reserva=$this->createUpdateReserva($request, $reserva);
+        return redirect()
+        ->route('reservas.index')
+        ->with('message','Registro Actualizado Satisfactoriamente.');
     }
 
     /**
@@ -90,8 +131,23 @@ class reservasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy()
+    public function destroy($id)
     {
-        return "estoy en la funcion destroy";
+        try{
+            $reserva=ReservaModel::join('users','reservas.id_usuario','=','users.id')
+            ->join('clases','reservas.id_clase','=','clases.id_clase')
+            ->where('reservas.id_reserva',$id)->firstOrfail();
+            $clase = ClaseModel::find($reserva->id_clase);
+            $reserva->delete();
+            $clase->cupo = $clase->cupo+1;
+            $clase->save();
+            return redirect()
+            ->route('reservas.index')
+            ->with('danger','Reserva Eliminada.');
+        }catch(QueryException $e){
+            return redirect()
+            ->route('reservas.index')
+            ->with('warning','La Reserva No Puede Ser Eliminada.');
+        }
     }
 }

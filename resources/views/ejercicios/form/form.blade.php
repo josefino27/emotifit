@@ -14,11 +14,14 @@
                 value="{{ isset($ejercicio) ? $ejercicio->descripcion : old('descripcion') }}" required>
         </div>
     </div>
-    <div class="col-12">
-        <div class="form-group">                                        
+    <div>
+        <div>                                        
             <label for="">Categoria</label>
-            <input type="number" class="form-control" name="id_musculo"
-                value="{{ isset($ejercicio) ? $ejercicio->id_musculo : old('id_musculo') }}" required>
+                <select class="col-12" name="id_musculo">
+                    @foreach ($musculo as $muscle)
+                    <option  value="{{$muscle->id}}">{{$muscle->id}} - {{$muscle->nombre}} </option>
+                    @endforeach
+                </select>
         </div>
     </div>
     <div class="col-12">

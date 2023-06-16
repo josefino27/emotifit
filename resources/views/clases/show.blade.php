@@ -12,7 +12,7 @@
 
     <div class="card-body">
 
-        @include('clases.form.form')
+       @include('clases.form.form')
        
     </div>
 </div>

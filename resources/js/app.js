@@ -1,1 +1,2 @@
-require('./bootstrap');
+require('../js/bootstrap');
+import 'livewire/livewire';
