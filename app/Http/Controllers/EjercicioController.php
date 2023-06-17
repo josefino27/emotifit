@@ -75,7 +75,8 @@ class EjercicioController extends Controller
     public function show($id)
     {
   
-        $ejercicio=EjercicioModel::where('id_ejercicio',$id)->firstOrfail();
+        $ejercicio=EjercicioModel::join('musculos','ejercicios.id_musculo','=','musculos.id')
+        ->where('id_ejercicio',$id)->firstOrfail();
         
         return view('ejercicios.show', compact('ejercicio'));
     }
@@ -88,7 +89,8 @@ class EjercicioController extends Controller
      */
     public function edit($id)
     {
-        $ejercicio=EjercicioModel::where('id_ejercicio',$id)->firstOrfail();
+        $ejercicio=EjercicioModel::join('musculos','ejercicios.id_musculo','=','musculos.id')
+        ->where('id_ejercicio',$id)->firstOrfail();
         return view('ejercicios.edit', compact('ejercicio'));
     }
 

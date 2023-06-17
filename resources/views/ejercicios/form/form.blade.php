@@ -18,9 +18,14 @@
         <div>                                        
             <label for="">Categoria</label>
                 <select class="col-12" name="id_musculo">
+                    @if(isset($ejercicio->nombre))
+                    <option  value="{{$ejercicio->id}}">{{$ejercicio->id}} - {{$ejercicio->nombre}} </option>
+                    @else
                     @foreach ($musculo as $muscle)
                     <option  value="{{$muscle->id}}">{{$muscle->id}} - {{$muscle->nombre}} </option>
                     @endforeach
+                    @endif
+                   
                 </select>
         </div>
     </div>

@@ -11,6 +11,7 @@
                         <tr>
                             <th role="button" wire:click="order('id_ejercicio')">Id</th>
                             <th role="button" wire:click="order('nombre_ejercicio')">Nombre</th>
+                            <th role="button" wire:click="order('nombre_ejercicio')">Categoria</th>
                             <th role="button" wire:click="order('descripcion')">Descripcion</th>
                             <th role="button" wire:click="order('imagen_ejercicio')">imagen</th>
                             <th>Accion</th>
@@ -22,6 +23,7 @@
                             <tr>
                                 <td>{{ $ejercicio->id_ejercicio }}</td>
                                 <td>{{ $ejercicio->nombre_ejercicio }}</td>
+                                <td>{{ $ejercicio->nombre }}</td>
                                 <td>{{ $ejercicio->descripcion }}</td>
                                 <td>
                                     <img src="{{ asset('storage') . '/' . $ejercicio->imagen_ejercicio }}" width="100">

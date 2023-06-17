@@ -23,9 +23,10 @@ class Ejercicios extends Component
 
     public function render()
     {
-        $ejercicios = EjercicioModel::where('nombre_ejercicio','like','%'.$this->search.'%')
+        $ejercicios = EjercicioModel::join('musculos','ejercicios.id_musculo','=','musculos.id')
+        ->where('nombre_ejercicio','like','%'.$this->search.'%')
         ->orderBy($this->sort,$this->direction)
-        ->paginate(1);
+        ->paginate(10);
 
         return view('livewire.admin.ejercicios' ,compact('ejercicios'))->layout('ejercicios.index');
     }

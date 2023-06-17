@@ -111,11 +111,12 @@
                                 </form>
                                 @if($clase->cupo === 0)
                                 @else
-                                <button class="btn-primary" form="{{$valor}}">Reservar</button>
+                                {{-- <button class="btn-primary" form="{{$valor}}">Reservar</button> --}}
+                                <button type="submit" form="{{$valor}}" class="btn-primary"
+                                    onclick="return confirm('¿{{Auth::user()->name}} estas seguro de reservar la clase de {{ $clase->nombreClase }} ?')">
+                                    Reservar
+                                </button>
                                 @endif
-                            </td>
-
-                            <td>
                                 <a href="{{ route('clases.show', $clase->id_clase) }}"><i class="fas fa-eye"></i></a>
                                 @can('users')
                                     <a href="{{ route('clases.edit', $clase->id_clase) }}"><i class="fas fa-edit"></i></a>
