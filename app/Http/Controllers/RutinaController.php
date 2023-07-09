@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\EjercicioModel;
 use Illuminate\Http\Request;
 
 class RutinaController extends Controller
@@ -23,7 +24,8 @@ class RutinaController extends Controller
      */
     public function create()
     {
-        return view('rutinas.create');
+        $ejercicios = EjercicioModel::all(); 
+        return view('rutinas.create',compact('ejercicios'));
     }
 
     /**

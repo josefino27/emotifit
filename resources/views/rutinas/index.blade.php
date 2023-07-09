@@ -10,5 +10,7 @@
         <i class="fas fa-plus"></i>   
         Agregar</a>
         @endcan
+
     </div>
+    @livewire('admin.rutinas')
 </div>@endsection

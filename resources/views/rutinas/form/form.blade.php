@@ -1,6 +1,16 @@
 @csrf
 <div class="row">
     <div class="mb-3">
+        <label for="" class="form-label">Ejercicio</label>
+        <select name="" id="">
+            @foreach ($ejercicios as $ejercicio)
+                <option  value="{{$ejercicio->id_ejercicio}}">{{$ejercicio->id_ejercicio}} - {{$ejercicio->nombre_ejercicio}} </option>
+            @endforeach
+        </select>
+    </div>
+</div>
+<div class="row">
+    <div class="mb-3">
         <label for="" class="form-label">Descripcion de la rutina</label>
         <textarea class="form-control"  rows="3" require></textarea>
     </div>

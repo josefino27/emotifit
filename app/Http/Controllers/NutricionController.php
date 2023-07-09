@@ -45,10 +45,10 @@ class NutricionController extends Controller
         
         if($imc>=30){
             $m = "Obesidad";
-         }if($imc>=25 && $imc<=29.9){
+         }if($imc>=25 && $imc<30){
             $m = "sobrepeso";
          }
-         if($imc>18.5 && $imc<=24.9){
+         if($imc>18.5 && $imc<25){
              $m="peso ideal";
          }
          if($imc<=18.5){
