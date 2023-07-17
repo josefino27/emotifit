@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\EjercicioModel;
+use App\Models\RutinaModel;
 use Illuminate\Http\Request;
 
 class RutinaController extends Controller
@@ -36,9 +37,18 @@ class RutinaController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $rutina = new RutinaModel();
+        $rutina=$this->createUpdaterutinas($request, $rutina);
+        return view(('rutinas.index'), compact('rutina'));
     }
-
+    public function createUpdaterutinas(Request $request,$rutina)
+    {
+        $rutina->nombre_rutina=$request->nombre_rutina;
+        $rutina->dia_entreno=join(",",$request->dia_entreno);
+        $rutina->descripcion_rutina=$request->descripcion_rutina;
+        $rutina->save();
+        return $rutina;
+    }
     /**
      * Display the specified resource.
      *

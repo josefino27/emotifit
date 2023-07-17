@@ -14,7 +14,7 @@ class RutinaModel extends Model
     protected $fillable = [
         'nombre_rutina',
         'dia_entreno',
-        'tiempo_rutina'
+        'descripcion_rutina'
     ];
 
 }

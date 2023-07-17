@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin;
 
 use App\Models\EjercicioModel;
+use App\Models\RutinaModel;
 use Livewire\Component;
 
 class Rutinas extends Component
@@ -17,6 +18,10 @@ class Rutinas extends Component
         ->where('nombre_ejercicio','like','%'.$this->search.'%')
         ->orderBy($this->sort,$this->direction)
         ->paginate(10);
-        return view('livewire.admin.rutinas', compact('ejercicios'))->layout('rutinas.index');;
+        $rutina = RutinaModel::all();
+        return view('livewire.admin.rutinas', compact('ejercicios','rutina'))->layout('rutinas.index');;
+
+        
+    
     }
 }

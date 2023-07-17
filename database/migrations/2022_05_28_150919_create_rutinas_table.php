@@ -17,7 +17,7 @@ return new class extends Migration
             $table->increments('id_rutina');
             $table->string('nombre_rutina');
             $table->string('dia_entreno');
-            $table->integer('tiempo_rutina');
+            $table->string('descripcion_rutina',1001);
             $table->timestamps();
         });
     }

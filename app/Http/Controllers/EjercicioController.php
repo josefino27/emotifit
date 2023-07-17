@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\EjercicioModel;
 use App\Models\MusculoModel;
+use Illuminate\Database\QueryException;
 
 class EjercicioController extends Controller
 {
@@ -124,10 +125,10 @@ class EjercicioController extends Controller
             return redirect()
             ->route('ejercicios.index')
             ->with('danger','Registro Eliminado.');
-        }catch(QueryException $e){
+        }catch(QueryException $ex){
             return redirect()
             ->route('ejercicios.index')
-            ->with('warning','El Registro No Puede Ser Eliminado.');
+            ->with('warning','El Registro No Puede Ser Eliminado.'+$ex);
         }
     }
 }
