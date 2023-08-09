@@ -42,6 +42,9 @@
                 </table>
             </div>
         </div>
+        <div class="card-footer">
+            {{ $musculos->links() }}
+        </div>
     @else
         <div class="car-body">
             <div class="alert alert-warning alert-dismissible" role="alert">

@@ -2,10 +2,10 @@
 <div class="row">
     <div class="col">
         <label for="nombre_rutina" class="form-label">Nombre de Rutina</label>
-        <input type="text" name="nombre_rutina" id="nombre_rutina">
+        <input type="text" name="nombre_rutina" id="nombre_rutina" value="{{(isset($rutina))?$rutina->nombre_rutina:old('')}}" required>
     </div>
 </div>
-<div class="row">
+{{-- <div class="row">
     <div class="col-md-3">
         <label for="option" class="form-label">Ejercicio</label>
         <select id="ejercicioId">
@@ -35,44 +35,95 @@
         var check = document.getElementById("check");
     }
     
-</script>
+</script> --}}
 <div class="row">
     <div class="mb-3">
         <label for="" class="form-label">Descripcion de la rutina</label>
-        <textarea class="form-control"  rows="3" require id="descripcion_rutina" name="descripcion_rutina"></textarea>
+        {{-- <textarea class="form-control"  rows="3" required id="descripcion_rutina" name="descripcion_rutina" value="{{(isset($rutina))?$rutina->descripcion_rutina:old('')}}"></textarea> --}}
+        <input class="form-control"  rows="3" required id="descripcion_rutina" name="descripcion_rutina" value="{{(isset($rutina))?$rutina->descripcion_rutina:old('')}}"/>
     </div>
 </div>
 <div class="row">
     <div class="col-12">
         <div class="form-group">
-            <label for="">Seleccione dia de entrenamiento</label>
+            <label for="dia_entreno[]"  >Seleccione dia de entrenamiento</label>
+            <label id="label"></label>
             <ul class="list-group" id="check">
                 <li class="list-group-item">
-                    <input class="form-check-input me-1"  name="dia_entreno[]"  type="checkbox" value="lunes" aria-label="...">
+                    <input class="form-check-input me-1"  name="dia_entreno[]"  type="checkbox" value="lunes" aria-label="..." 
+                    @if(isset($rutina->dia_entreno))
+                    @if (in_array('lunes',$rutina->dia_entreno))
+                    checked
+                    @else
+                    @endif
+                    @else
+                    @endif>
                     Lunes
                 </li>
                 <li class="list-group-item">
-                    <input class="form-check-input me-1"  name="dia_entreno[]" type="checkbox" value="martes" aria-label="...">
+                    <input class="form-check-input me-1"  name="dia_entreno[]" type="checkbox" value="martes" aria-label="..."
+                    @if(isset($rutina->dia_entreno))
+                    @if (in_array('martes',$rutina->dia_entreno))
+                    checked
+                    @else
+                    @endif
+                    @else
+                    @endif>
                     Martes
                 </li>
                 <li class="list-group-item">
-                    <input class="form-check-input me-1" name="dia_entreno[]"  type="checkbox" value="miercoles" aria-label="...">
+                    <input class="form-check-input me-1" name="dia_entreno[]"  type="checkbox" value="miercoles" aria-label="..."
+                    @if(isset($rutina->dia_entreno))
+                    @if (in_array('miercoles',$rutina->dia_entreno))
+                    checked
+                    @else
+                    @endif
+                    @else
+                    @endif>
                     Miercoles
                 </li>
                 <li class="list-group-item">
-                    <input class="form-check-input me-1"  name="dia_entreno[]" type="checkbox" value="jueves" aria-label="...">
+                    <input class="form-check-input me-1"  name="dia_entreno[]" type="checkbox" value="jueves" aria-label="..."
+                    @if(isset($rutina->dia_entreno))
+                    @if (in_array('jueves',$rutina->dia_entreno))
+                    checked
+                    @else
+                    @endif
+                    @else
+                    @endif>
                     Jueves
                 </li>
                 <li class="list-group-item">
-                    <input class="form-check-input me-1"  name="dia_entreno[]" type="checkbox" value="viernes" aria-label="...">
+                    <input class="form-check-input me-1"  name="dia_entreno[]" type="checkbox" value="viernes" aria-label="..."
+                    @if(isset($rutina->dia_entreno))
+                    @if (in_array('viernes',$rutina->dia_entreno))
+                    checked
+                    @else
+                    @endif
+                    @else
+                    @endif>
                     Viernes
                 </li>
                 <li class="list-group-item">
-                    <input class="form-check-input me-1"  name="dia_entreno[]" type="checkbox" value="sabado" aria-label="...">
+                    <input class="form-check-input me-1"  name="dia_entreno[]" type="checkbox" value="sabado" aria-label="..."
+                    @if(isset($rutina->dia_entreno))
+                    @if (in_array('sabado',$rutina->dia_entreno))
+                    checked
+                    @else
+                    @endif
+                    @else
+                    @endif>
                     Sabado
                 </li>
                 <li class="list-group-item">
-                    <input class="form-check-input me-1"  name="dia_entreno[]" type="checkbox" value="domingo" aria-label="...">
+                    <input class="form-check-input me-1"  name="dia_entreno[]" type="checkbox" value="domingo" aria-label="..."
+                    @if(isset($rutina->dia_entreno))
+                    @if (in_array('domingo',$rutina->dia_entreno))
+                    checked
+                    @else
+                    @endif
+                    @else
+                    @endif>
                     Domingo
                 </li>
             </ul>

@@ -8,12 +8,13 @@ use App\Http\Controllers\RutinaController;
 use App\Http\Controllers\NutricionController;
 use App\Http\Controllers\ImcController;
 use App\Http\Controllers\EjercicioController;
+use App\Http\Controllers\EmocionController;
 use App\Http\Controllers\permisosController;
 use App\Http\Controllers\UserController;
 use App\Http\Livewire\Admin\UserIndex;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\MusculoController;
-
+use App\Http\Controllers\RutinasEjercicios;
 
 /*
 |--------------------------------------------------------------------------
@@ -90,6 +91,8 @@ Route::group(['middleware'=>['auth']], function(){
     Route::get('user',UserIndex::class);
     Route::resource('users',UserController::class);
     Route::resource('musculos',MusculoController::class);
+    Route::resource('rutinasEjercicios',RutinasEjercicios::class);
+    Route::resource('emocion',EmocionController::class);
 
 });
 

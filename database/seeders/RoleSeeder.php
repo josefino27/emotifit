@@ -30,6 +30,10 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'rutinas.index','description'=>'ver rutinas'])->syncRoles([$Role1,$Role2,$Role3]);
         Permission::create(['name' => 'rutinas.edit','description'=>'editar rutinas'])->syncRoles([$Role1,$Role2,$Role3]);
         Permission::create(['name' => 'rutinas.destroy','description'=>'eliminar rutinas'])->syncRoles([$Role1,$Role2,$Role3]);
+        Permission::create(['name' => 'rutinas-ejercicios.create','description'=>'crear rutinas'])->syncRoles([$Role1,$Role3]);
+        Permission::create(['name' => 'rutinas-ejercicios.index','description'=>'ver rutinas'])->syncRoles([$Role1,$Role2,$Role3]);
+        Permission::create(['name' => 'rutinas-ejercicios.edit','description'=>'editar rutinas'])->syncRoles([$Role1,$Role2,$Role3]);
+        Permission::create(['name' => 'rutinas-ejercicios.destroy','description'=>'eliminar rutinas'])->syncRoles([$Role1,$Role2,$Role3]);
         Permission::create(['name' => 'roles','description'=>'gestionar roles y permisos'])->syncRoles([$Role1,$Role3]);;
         Permission::create(['name' => 'ejercicios.create','description'=>'crear ejercicios'])->syncRoles([$Role1,$Role3]);
         Permission::create(['name' => 'ejercicios.index','description'=>'ver ejercicios'])->syncRoles([$Role1,$Role2,$Role3]);

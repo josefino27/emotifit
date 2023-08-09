@@ -118,11 +118,7 @@ class reservasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $reserva=ReservaModel::where('id_reserva',$id)->firstOrfail();
-        $reserva=$this->createUpdateReserva($request, $reserva);
-        return redirect()
-        ->route('reservas.index')
-        ->with('message','Registro Actualizado Satisfactoriamente.');
+   
     }
 
     /**

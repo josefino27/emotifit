@@ -31,7 +31,13 @@
                 </a>
             </li>
             @endcan
+            <li class="{{'emocion'==Request::is('emocion*')?'active':''}}">
+                <a href="{{route('emocion.index')}}">
+                    <i class="fas fa-pencil-alt"></i>
+                    <b>Emocion</b>
+                </a>
 
+            </li>
 
             <li>
                 <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
@@ -57,6 +63,14 @@
                 <a href="{{route('rutinas.index')}}">
                     <i class="fas fa-pencil-alt"></i>
                     <b>Rutina</b>
+                </a>
+
+            </li>
+
+            <li class="{{'rutinasEjercicios'==Request::is('rutinasEjercicios*')?'active':''}}">
+                <a href="{{route('rutinasEjercicios.index')}}">
+                    <i class="fas fa-pencil-alt"></i>
+                    <b>Rutina Ejercicios</b>
                 </a>
 
             </li>

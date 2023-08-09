@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\EjercicioModel;
+use App\Models\RutinaEjercicioModel;
 use App\Models\RutinaModel;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 class RutinaController extends Controller
@@ -38,8 +40,14 @@ class RutinaController extends Controller
     public function store(Request $request)
     {
         $rutina = new RutinaModel();
-        $rutina=$this->createUpdaterutinas($request, $rutina);
-        return view(('rutinas.index'), compact('rutina'));
+
+        $radiocheck=$request->validate([
+            'dia_entreno' => 'required|array|min:1', // Al menos un día debe estar seleccionado
+        ]);
+        if($radiocheck['dia_entreno'] > 0){
+            $rutina=$this->createUpdaterutinas($request, $rutina);
+        }
+        return redirect()->route('rutinas.index')->with('message','Rutina Creada Satisfactoriamente.');
     }
     public function createUpdaterutinas(Request $request,$rutina)
     {
@@ -57,7 +65,10 @@ class RutinaController extends Controller
      */
     public function show($id)
     {
-        //
+        $rutina=RutinaModel::where('rutinas.id_rutina',$id)->firstOrfail();
+        $rutina->dia_entreno=explode(',',$rutina->dia_entreno);
+        //dd($rutina->dia_entreno);
+        return view('rutinas.show', compact('rutina')); 
     }
 
     /**
@@ -68,7 +79,10 @@ class RutinaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $rutina=RutinaModel::where('rutinas.id_rutina',$id)->firstOrfail();
+        $rutina->dia_entreno=explode(',',$rutina->dia_entreno);
+        //dd($rutina->dia_entreno);
+        return view('rutinas.edit', compact('rutina'));  
     }
 
     /**
@@ -80,7 +94,19 @@ class RutinaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $rutina=RutinaModel::where('id_rutina',$id)->firstOrfail();
+        $rutina=$this->createUpdaterutinas($request, $rutina);
+        $rutina->dia_entreno=explode(',',$rutina->dia_entreno);
+        // $rutinaEjercicios =  RutinaEjercicioModel::join('ejercicios','rutinas_ejercicio.id_ejercicio','=','ejercicios.id_ejercicio')
+        // ->join('rutinas','rutinas_ejercicio.id_rutina','=','rutinas.id_rutina')
+        // ->where('rutinas.id_rutina','=',$id)
+        // ->orderBy("rutinas_ejercicio.id_rutina_ejercicio","asc")
+        // ->paginate(10); 
+        return redirect()
+        ->route('rutinas.index')
+        ->with('message', 'Registro Actualizado Satisfactoriamente.');
+        //dd($rutinaEjercicios);
     }
 
     /**
@@ -91,6 +117,16 @@ class RutinaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $rutina=rutinaModel::findOrfail($id);
+        try{
+            $rutina->delete();
+            return redirect()
+            ->route('rutinas.index')
+            ->with('danger','Registro Eliminado.');
+        }catch(QueryException $e){
+            return redirect()
+            ->route('rutinas.index')
+            ->with('warning','El Registro No Puede Ser Eliminado.');
+        }
     }
 }

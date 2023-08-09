@@ -1,4 +1,7 @@
-
+<div>
+    <div class="card-header">
+        <input wire:model="search" class="form-control" placeholder="Busquedad por nombre">
+    </div>
     @if ($rutina->count())
         <div class="card-body ">
             <div>
@@ -45,9 +48,8 @@
                 </table>
             </div>
         </div>
-
         <div class="card-footer">
-            {{ $ejercicios->links() }}
+            {{ $rutina->links() }}
         </div>
     @else
         <div class="car-body">

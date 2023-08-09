@@ -2,18 +2,17 @@
 
 namespace App\Http\Livewire\Admin;
 
+use App\Models\EmocionModel;
 use Livewire\Component;
-use App\Models\MusculoModel;
 use Livewire\WithPagination;
 
-class Musculos extends Component
+class Emocion extends Component
 {
     use WithPagination;
 
     public $search;
-    public $sort='id';
+    public $sort='id_emocion';
     public $direction='asc';
-
 
     protected $paginationTheme="bootstrap";
 
@@ -22,10 +21,9 @@ class Musculos extends Component
     }
     public function render()
     {
-        $musculos = MusculoModel::where('nombre','like','%'.$this->search.'%')
-        ->orderBy($this->sort,$this->direction)
+        $emociones = EmocionModel::where('nombre_emocion','like','%'.$this->search.'%')
+        ->orderby($this->sort,$this->direction)
         ->paginate(3);
-
-        return view('livewire.admin.musculos' ,compact('musculos'))->layout('musculos.index');
+        return view('livewire.admin.emocion', compact('emociones'))->layout('emocion.index');
     }
 }
