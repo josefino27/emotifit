@@ -16,15 +16,10 @@
         @include('rutinas-ejercicios.form.form')
         </form>
     </div>
-    @livewire('admin.rutinas-ejercicios')
     <div class="card-footer">
         <button class="btn btn-primary" form="crear">
         <i class="fas fa-plus"></i> Agregar
         </button>
-        <a href="{{route('rutinas.index')}}" class="btn btn-primary ms-auto">
-            <i class="fas fa-save"></i>
-            Finalizar
-        </a>
     </div>
 </div>
 

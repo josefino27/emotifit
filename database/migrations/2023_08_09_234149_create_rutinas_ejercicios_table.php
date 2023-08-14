@@ -13,12 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('rutinas_ejercicio',function(Blueprint $table){
+        Schema::create('rutinas_ejercicios',function(Blueprint $table){
             $table->increments('id_rutina_ejercicio');
             $table->integer('id_rutina')->unsigned();
             $table->integer('id_ejercicio')->unsigned();
-            $table->integer('repeticiones');
-            $table->integer('series');
+            $table->integer('serie_tipo')->unsigned();
+            $table->integer('repeticiones')->nullable();
+            $table->integer('duracion_segundos')->nullable();
+            $table->foreign('serie_tipo')->references('id_serie')->on('series');
             $table->foreign('id_rutina')->references('id_rutina')->on('rutinas');
             $table->foreign('id_ejercicio')->references('id_ejercicio')->on('ejercicios');
             $table->timestamps();
@@ -32,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rutinas_ejercicio');
+        Schema::dropIfExists('rutinas_ejercicios');
     }
 };

@@ -49,9 +49,9 @@ class EjercicioController extends Controller
     {
         $ejercicio = new EjercicioModel();
         $ejercicio=$this->createUpdateEjercicios($request, $ejercicio);
-        $imagenes=$request->file('imagen_ejercicio')->store('public/img');
+        $imagenes=$request->file('imagen_ejercicio');
         $url=Storage::url($imagenes);
-        // return dd($request->id_musculo);
+        //return dd($ejercicio);
         return view(('ejercicios.index'), compact('ejercicio'));
     }                                                                           
     public function createUpdateEjercicios(Request $request,$ejercicio)

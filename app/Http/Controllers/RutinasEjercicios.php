@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\EjercicioModel;
 use App\Models\RutinaEjercicioModel;
 use App\Models\RutinaModel;
+use App\Models\SerieModel;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
@@ -27,8 +28,10 @@ class RutinasEjercicios extends Controller
      */
     public function create()
     {
-        // $ejercicios = EjercicioModel::all(); 
-        // return view('rutinas-ejercicios.create',compact('ejercicios'));
+        $ejercicios = EjercicioModel::all(); 
+        $rutinas = RutinaModel::all();
+        $series = SerieModel::all();
+        return view('rutinas-ejercicios.create',compact('ejercicios','rutinas','series'));
 
     }
 
@@ -42,23 +45,18 @@ class RutinasEjercicios extends Controller
     {
         $rutinaEjercicio = new RutinaEjercicioModel();
         $rutinaEjercicio = $this->createUpdateRutinasEjercicios($request,$rutinaEjercicio);
-        $ejercicios = EjercicioModel::all(); 
-        $rutinaEjercicios =  RutinaEjercicioModel::join('ejercicios','rutinas_ejercicio.id_ejercicio','=','ejercicios.id_ejercicio')
-        ->join('rutinas','rutinas_ejercicio.id_rutina','=','rutinas.id_rutina')
-        ->where('rutinas.id_rutina','=',$rutinaEjercicio->id_rutina)
-        ->orderBy("rutinas_ejercicio.id_rutina_ejercicio","asc")
-        ->paginate(10); 
-
-        return view('rutinas-ejercicios.create', compact('rutinaEjercicios','ejercicios'));
-
+        return redirect()->route('rutinasEjercicios.index')
+        ->with('message','Registro Creado Satisfactoriamente.');
     }
     public function createUpdateRutinasEjercicios(Request $request,$rutinaEjercicio){
 
         $rutinaEjercicio->id_rutina=$request->id_rutina;
         $rutinaEjercicio->id_ejercicio=$request->id_ejercicio;
+        $rutinaEjercicio->serie_tipo=$request->id_serie;
         $rutinaEjercicio->repeticiones=$request->repeticiones;
-        $rutinaEjercicio->series=$request->series;
+        $rutinaEjercicio->duracion_segundos=$request->duracion_segundos;
         $rutinaEjercicio->save();
+        //dd($rutinaEjercicio);
         return $rutinaEjercicio;
 
     }
