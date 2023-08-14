@@ -18,11 +18,9 @@
                             <tr>
                                 <th role="button" wire:click="order('nombre_rutina')">Nombre Rutina</th>
                                 <th role="button" wire:click="order('nombre_ejercicio')">Ejercicio</th>
-                                @if(isset($rutinaEjercicio[0]->repeticiones))
+                                <th role="button" wire:click="order('tipo')">Serie</th>
                                 <th role="button" wire:click="order('repeticiones')">Repeticiones</th>
-                                @endif
-                                <th role="button" wire:click="order('series')">Serie</th>
-                                <th role="button" wire:click="order('descripcion')">Segundos</th>
+                                <th role="button" wire:click="order('duracion_segundos')">Segundos</th>
                             </tr>
                         </thead>
     
@@ -31,8 +29,9 @@
                                 <tr>
                                     <td>{{ $rutinaEjercicio->nombre_rutina }}</td>
                                     <td>{{ $rutinaEjercicio->nombre_ejercicio }}</td>
+                                    <td>{{ $rutinaEjercicio->tipo }}</td>
+
                                     <td>{{ $rutinaEjercicio->repeticiones }}</td>
-                                    <td>{{ $rutinaEjercicio->serie_tipo }}</td>
                                     <td>{{ $rutinaEjercicio->duracion_segundos }}</td>
                                     {{-- <td width="200px">
                                         <a href="{{ route('ejercicios.show', $ejercicio->id_ejercicio) }}"><i

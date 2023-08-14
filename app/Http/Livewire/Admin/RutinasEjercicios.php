@@ -28,6 +28,7 @@ class RutinasEjercicios extends Component
     $rutinas= RutinaModel::all();
     $rutinaEjercicios = RutinaEjercicioModel::join('ejercicios','rutinas_ejercicios.id_ejercicio','=','ejercicios.id_ejercicio')
     ->join('rutinas','rutinas_ejercicios.id_rutina','=','rutinas.id_rutina')
+    ->join('series','rutinas_ejercicios.serie_tipo','=','series.id_serie')
     ->where('rutinas.nombre_rutina','like','%'.$this->search.'%')
     ->orderBy($this->sort,$this->direction)
     ->paginate(10);
