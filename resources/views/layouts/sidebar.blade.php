@@ -17,7 +17,7 @@
             @can('users')
             <li class="{{'home'==Request::is('users*')?'active':''}}">
                 <a href="{{url('users')}}">
-                    <i class="fas fa-home"></i>
+                    <i class="fas fa-users"></i>
                     <b>Usuarios</b>
                 </a>
             </li>
@@ -26,14 +26,14 @@
             @can('roles')
             <li class="{{'permisos'==Request::is('role*')?'active':''}}">
                 <a href="{{route('role.index')}}">
-                    <i class="fas fa-pencil-alt"></i>
+                    <i class="fas fa-user-cog"></i>
                     <b>Roles y Permisos</b>
                 </a>
             </li>
             @endcan
             <li class="{{'emocion'==Request::is('emocion*')?'active':''}}">
                 <a href="{{route('emocion.index')}}">
-                    <i class="fas fa-pencil-alt"></i>
+                    <i class="fas fa-heartbeat"></i>
                     <b>Emocion</b>
                 </a>
 
@@ -61,7 +61,7 @@
 
             <li class="{{'rutinas'==Request::is('rutinas*')?'active':''}}">
                 <a href="{{route('rutinas.index')}}">
-                    <i class="fas fa-pencil-alt"></i>
+                    <i class="fas fa-book"></i>
                     <b>Rutina</b>
                 </a>
 
@@ -69,7 +69,7 @@
 
             <li class="{{'rutinasEjercicios'==Request::is('rutinasEjercicios*')?'active':''}}">
                 <a href="{{route('rutinasEjercicios.index')}}">
-                    <i class="fas fa-pencil-alt"></i>
+                    <i class="fas fa-address-book"></i>
                     <b>Rutina Ejercicios</b>
                 </a>
 
@@ -77,7 +77,7 @@
             @can('users')
             <li class="{{'rutinas'==Request::is('musculos*')?'active':''}}">
                 <a href="{{route('musculos.index')}}">
-                    <i class="fas fa-pencil-alt"></i>
+                    <i class="fas fa-child"></i>
                     <b>Musculos</b>
                 </a>
 

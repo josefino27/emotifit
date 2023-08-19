@@ -11,8 +11,8 @@
     </div>
 
     <div class="card-body">
-        <form action="{{route('ejercicios.store')}}" method="POST" enctype="multipart/form-data" id="crear">
-        @include('ejercicios.form.form')
+        <form action="{{route('emocion.store')}}" method="POST" enctype="multipart/form-data" id="crear">
+        @include('emociones.form.form')
         </form>
     </div>
     <div class="card-footer">
