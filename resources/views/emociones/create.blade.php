@@ -3,8 +3,8 @@
 @section('content')
 <div class="card mt-3">
     <div class="card-header d-inline-flex">
-        <h5>Agregar Ejercicio</h5>
-        <a href="{{route('ejercicios.index')}}" class="btn btn-primary ms-auto">
+        <h5>Agregar Emociones</h5>
+        <a href="{{route('emocion.index')}}" class="btn btn-primary ms-auto">
             <i class="fas fa-arrow-left"></i>
             Volver
         </a>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\EmocionModel;
 use Illuminate\Http\Request;
 
 class EmocionController extends Controller
@@ -23,7 +24,7 @@ class EmocionController extends Controller
      */
     public function create()
     {
-        //
+        return view('emociones.create');
     }
 
     /**
@@ -34,7 +35,18 @@ class EmocionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $emocion=new EmocionModel();
+        $emocion=$this->createUpdateEmociones($request, $emocion);
+        return redirect()
+        ->route('emocion.index')
+        ->with('message','Registro Creado Satisfactoriamente.');
+    }
+
+    public function createUpdateEmociones(Request $request, $emocion){
+
+        $emocion->nombre_emocion = $request->nombre_emocion;
+        $emocion->save();
+        return $emocion;
     }
 
     /**
@@ -45,7 +57,9 @@ class EmocionController extends Controller
      */
     public function show($id)
     {
-        //
+        $emocion = EmocionModel::where('id_emocion',$id)->firstOrfail();
+        return view('emociones.show', compact('emocion'));
+
     }
 
     /**
@@ -56,7 +70,8 @@ class EmocionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $emocion = EmocionModel::where('id_emocion',$id)->firstOrfail();
+        return view('emociones.edit', compact('emocion'));
     }
 
     /**
@@ -68,7 +83,11 @@ class EmocionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $emocion = EmocionModel::where('id_emocion',$id)->firstOrfail();
+        $emocion = $this->createUpdateEmociones($request, $emocion);
+        return redirect()
+        ->route('emocion.index')
+        ->with('message','Registro Actualizado Satisfactoriamente.');
     }
 
     /**

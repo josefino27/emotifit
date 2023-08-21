@@ -36,7 +36,7 @@ class ClaseModelSeeder extends Seeder
         ]);
         ClaseModel::create([
             'nombreClase'=>'yoga',
-            'cupo'=>'10',
+            'cupo'=>'9',
             'fecha'=>'2033-08-20',
             'comienza'=>'10:30:00',
             'termina'=>'11:30:00',
