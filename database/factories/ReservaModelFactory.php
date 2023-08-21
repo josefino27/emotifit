@@ -17,8 +17,8 @@ class ReservaModelFactory extends Factory
     public function definition()
     {
         return [
-            'id_clase'      =>$this->faker->numberbetween(6,15),
-            'id_usuario'    =>$this->faker->numberbetween(1,25)
+            // 'id_clase'      =>$this->faker->numberbetween(1,2),
+            // 'id_usuario'    =>$this->faker->numberbetween(1,25)
         ];
     }
 }

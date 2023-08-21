@@ -20,6 +20,13 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
         $this->call(MusculoSeeder::class);
         $this->call(SerieSeeder::class);
+        $this->call(EmocionSeeder::class);
+        $this->call(ClaseModelSeeder::class);
+        $this->call(ReservaModelSeeder::class);
+        $this->call(EjercicioModelSeeder::class);
+        $this->call(RutinaModelSeeder::class);
+        $this->call(RutinaEjercicioModelSeeder::class);
+
        // ClaseModel::factory(5)->create();
        // ReservaModel::factory(5)->create();
 
