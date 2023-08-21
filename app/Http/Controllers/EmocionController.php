@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\EmocionModel;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 class EmocionController extends Controller
@@ -98,6 +99,15 @@ class EmocionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $emocion = EmocionModel::findOrFail($id);
+        try{
+            $emocion->delete();
+            return redirect()
+            ->route('emocion.index')
+            ->with('danger','Registro Eliminado.');
+        }catch(QueryException $e){
+            return redirect('emocion.index')
+            ->with('warning','El Registro No Puede Ser Eliminado.');
+        }
     }
 }
