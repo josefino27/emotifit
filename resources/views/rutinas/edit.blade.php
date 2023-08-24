@@ -19,7 +19,7 @@
         </div>
         <div class="card-footer">
             <button class="btn btn-primary" form="crear">
-                <i class="fas fa-edit"></i> Editar rutina y ejercicios
+                <i class="fas fa-edit"></i> Editar rutina
             </button>
         </div>
     </div>

@@ -19,7 +19,7 @@
             @endforeach
         </select>
     </div>
-    @if($series)
+    @if(isset($series))
     <div class="col-md-3">
         <label for="" class="form-label">Series</label>
         <select name="id_serie" id="id_serie">
@@ -33,6 +33,10 @@
         <input type="number" id="tipo" name="repeticiones" style="width:50px;">
     </div>
     @endif
+</div>
+@endif
+@if(isset($rutinaEjercicio))
+<div class="col-md-3">
 </div>
 @endif
 

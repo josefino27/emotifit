@@ -18,9 +18,12 @@
                             <tr>
                                 <th role="button" wire:click="order('nombre_rutina')">Nombre Rutina</th>
                                 <th role="button" wire:click="order('nombre_ejercicio')">Ejercicio</th>
+                                <th role="button" wire:click="order('descripcion')">Descripcion</th>
                                 <th role="button" wire:click="order('tipo')">Serie</th>
                                 <th role="button" wire:click="order('repeticiones')">Repeticiones</th>
                                 <th role="button" wire:click="order('duracion_segundos')">Segundos</th>
+                                <th role="button">Accion</th>
+                            </tr>
                             </tr>
                         </thead>
     
@@ -29,29 +32,29 @@
                                 <tr>
                                     <td>{{ $rutinaEjercicio->nombre_rutina }}</td>
                                     <td>{{ $rutinaEjercicio->nombre_ejercicio }}</td>
+                                    <td>{{ $rutinaEjercicio->descripcion }}</td>
                                     <td>{{ $rutinaEjercicio->tipo }}</td>
-
                                     <td>{{ $rutinaEjercicio->repeticiones }}</td>
                                     <td>{{ $rutinaEjercicio->duracion_segundos }}</td>
-                                    {{-- <td width="200px">
-                                        <a href="{{ route('ejercicios.show', $ejercicio->id_ejercicio) }}"><i
+                                    <td width="200px">
+                                        <a href="{{ route('rutinasEjercicios.show', $rutinaEjercicio->id_ejercicio) }}"><i
                                                 class="fas fa-eye"></i></a>
                                         @can('users')
-                                            <a href="{{ route('ejercicios.edit', $ejercicio->id_ejercicio) }}"><i
+                                            <a href="{{ route('rutinasEjercicios.edit', $rutinaEjercicio->id_ejercicio) }}"><i
                                                     class="fas fa-edit"></i></a>
     
-                                            <button type="submit" form="delete_{{ $ejercicio->id_ejercicio }}"
+                                            <button type="submit" form="delete_{{ $rutinaEjercicio->id_ejercicio }}"
                                                 onclick="return confirm('¿estas seguro de eliminar el registro?')">
                                                 <i class="fas fa-trash"></i>
-                                                <form action="{{ route('ejercicios.destroy', $ejercicio->id_ejercicio) }}"
-                                                    id="delete_{{ $ejercicio->id_ejercicio }}" method="post"
+                                                <form action="{{ route('rutinasEjercicios.destroy', $rutinaEjercicio->id_ejercicio) }}"
+                                                    id="delete_{{ $rutinaEjercicio->id_ejercicio }}" method="post"
                                                     enctype="multipart/form-data" hidden>
                                                     @csrf
                                                     @method('delete')
                                                 </form>
                                             </button>
                                         @endcan
-                                    </td> --}}
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

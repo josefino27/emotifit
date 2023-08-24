@@ -69,7 +69,10 @@ class RutinasEjercicios extends Controller
      */
     public function show($id)
     {
-        //
+        $rutinaEjercicio = RutinaEjercicioModel::where('id_rutina_ejercicio', $id)->firstOrFail();
+        $ejercicios = EjercicioModel::where('id_ejercicio',$rutinaEjercicio->id_ejercicio);
+        return view('rutinas-ejercicios.show', compact('rutinaEjercicio','ejercicios'));
+
     }
 
     /**

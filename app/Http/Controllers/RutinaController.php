@@ -27,7 +27,7 @@ class RutinaController extends Controller
      */
     public function create()
     {
-        $ejercicios = EjercicioModel::all(); 
+        $ejercicios = EjercicioModel::all();
         return view('rutinas.create',compact('ejercicios'));
     }
 

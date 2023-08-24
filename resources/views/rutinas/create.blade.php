@@ -18,7 +18,7 @@
     </div>
     <div class="card-footer">
         <button class="btn btn-primary" form="crear" onclick="validarDiaEntreno()">
-        <i class="fas fa-plus"></i> Crear y añadir ejercicios
+        <i class="fas fa-plus"></i> Crear
         </button>
     </div>
 </div>
