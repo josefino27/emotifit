@@ -20,6 +20,11 @@ class userSeeder extends Seeder
             'email' =>'pechesito1@gmail.com',
             'password'=>'$2y$10$M3AC2PqIoQIFAGAHPdRwdO3.yBxNvaxjVUAd9pNSQMLujJnWKe6uy', // password
         ])->assignRole('Admin');
+        User::create([
+            'name'=>'Juan',
+            'email' =>'juanobando518@gmail.com',
+            'password'=>'$2y$10$EeE7XcgyRqBc8eq2IzeJ/Os2OwLsohw3z5f2HIWlS5Tf6II2Sd3le', // juanobando518
+        ])->assignRole('Admin');
 
         User::factory(99)->create();
         
