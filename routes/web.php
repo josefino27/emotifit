@@ -15,6 +15,7 @@ use App\Http\Livewire\Admin\UserIndex;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\MusculoController;
 use App\Http\Controllers\RutinasEjercicios;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
