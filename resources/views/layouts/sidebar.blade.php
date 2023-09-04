@@ -59,7 +59,7 @@
                     </li>
                 </ul>
 
-            <li class="{{'rutinas'==Request::is('rutinas*')?'active':''}}">
+            <li class="{{'rutinas'==Request::is('rutinas')?'active':''}}">
                 <a href="{{route('rutinas.index')}}">
                     <i class="fas fa-book"></i>
                     <b>Rutina</b>
@@ -67,7 +67,7 @@
 
             </li>
 
-            <li class="{{'rutinasEjercicios'==Request::is('rutinasEjercicios*')?'active':''}}">
+            <li class="{{'rutinasEjercicios'==Request::is('rutinasEjercicios')?'active':''}}">
                 <a href="{{route('rutinasEjercicios.index')}}">
                     <i class="fas fa-address-book"></i>
                     <b>Rutina Ejercicios</b>

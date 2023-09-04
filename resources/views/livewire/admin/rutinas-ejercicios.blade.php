@@ -37,17 +37,17 @@
                                     <td>{{ $rutinaEjercicio->repeticiones }}</td>
                                     <td>{{ $rutinaEjercicio->duracion_segundos }}</td>
                                     <td width="200px">
-                                        <a href="{{ route('rutinasEjercicios.show', $rutinaEjercicio->id_ejercicio) }}"><i
+                                        <a href="{{ route('rutinasEjercicios.show', $rutinaEjercicio->id_rutina_ejercicio) }}"><i
                                                 class="fas fa-eye"></i></a>
                                         @can('users')
-                                            <a href="{{ route('rutinasEjercicios.edit', $rutinaEjercicio->id_ejercicio) }}"><i
+                                            <a href="{{ route('rutinasEjercicios.edit', $rutinaEjercicio->id_rutina_ejercicio) }}"><i
                                                     class="fas fa-edit"></i></a>
     
-                                            <button type="submit" form="delete_{{ $rutinaEjercicio->id_ejercicio }}"
+                                            <button type="submit" form="delete_{{ $rutinaEjercicio->id_rutina_ejercicio }}"
                                                 onclick="return confirm('¿estas seguro de eliminar el registro?')">
                                                 <i class="fas fa-trash"></i>
-                                                <form action="{{ route('rutinasEjercicios.destroy', $rutinaEjercicio->id_ejercicio) }}"
-                                                    id="delete_{{ $rutinaEjercicio->id_ejercicio }}" method="post"
+                                                <form action="{{ route('rutinasEjercicios.destroy', $rutinaEjercicio->id_rutina_ejercicio) }}"
+                                                    id="delete_{{ $rutinaEjercicio->id_rutina_ejercicio }}" method="post"
                                                     enctype="multipart/form-data" hidden>
                                                     @csrf
                                                     @method('delete')

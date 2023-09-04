@@ -33,6 +33,7 @@ class RutinasEjercicios extends Controller
         $series = SerieModel::all();
         return view('rutinas-ejercicios.create',compact('ejercicios','rutinas','series'));
 
+        //dd($ejercicios);
     }
 
     /**
@@ -69,9 +70,19 @@ class RutinasEjercicios extends Controller
      */
     public function show($id)
     {
-        $rutinaEjercicio = RutinaEjercicioModel::where('id_rutina_ejercicio', $id)->firstOrFail();
-        $ejercicios = EjercicioModel::where('id_ejercicio',$rutinaEjercicio->id_ejercicio);
-        return view('rutinas-ejercicios.show', compact('rutinaEjercicio','ejercicios'));
+        $rutinaEjercicios = RutinaEjercicioModel::join('rutinas','rutinas_ejercicios.id_rutina','=','rutinas.id_rutina')
+        ->join('ejercicios','rutinas_ejercicios.id_ejercicio','=','ejercicios.id_ejercicio')
+        ->join('series','rutinas_ejercicios.serie_tipo','=','series.id_serie')
+        ->where('id_rutina_ejercicio', $id)->firstOrFail();
+        //$rutinaEjercicios = RutinaEjercicioModel::where('id_rutina_ejercicio', $id)->firstOrFail();
+        $rutinas = RutinaModel::where('id_rutina',$rutinaEjercicios->id_rutina)->firstOrFail();
+        //$rutinas = RutinaModel::all();
+        // $ejercicio = EjercicioModel::where('id_ejercicio',$rutinaEjercicios->id_ejercicio)->firstOrFail();
+        $ejercicios = EjercicioModel::where('id_ejercicio','!=',$rutinaEjercicios->id_ejercicio);
+        // $serie = SerieModel::where('id_serie',$rutinaEjercicios->serie_tipo)->firstOrFail();
+        $series = SerieModel::where('id_serie','!=',$rutinaEjercicios->serie_tipo)->firstOrFail();
+        return view('rutinas-ejercicios.show',compact('rutinaEjercicios','ejercicios','rutinas','series'));
+        //dd($series,$rutinaEjercicios,$rutinas);
 
     }
 
@@ -83,7 +94,19 @@ class RutinasEjercicios extends Controller
      */
     public function edit($id)
     {
-        //
+        $rutinaEjercicios = RutinaEjercicioModel::join('rutinas','rutinas_ejercicios.id_rutina','=','rutinas.id_rutina')
+        ->join('ejercicios','rutinas_ejercicios.id_ejercicio','=','ejercicios.id_ejercicio')
+        ->join('series','rutinas_ejercicios.serie_tipo','=','series.id_serie')
+        ->where('id_rutina_ejercicio', $id)->firstOrFail();
+        //$rutinaEjercicios = RutinaEjercicioModel::where('id_rutina_ejercicio', $id)->firstOrFail();
+        $rutinas = RutinaModel::where('id_rutina',$rutinaEjercicios->id_rutina)->firstOrFail();
+        //$rutinas = RutinaModel::all();
+        // $ejercicio = EjercicioModel::where('id_ejercicio',$rutinaEjercicios->id_ejercicio)->firstOrFail();
+        $ejercicios = EjercicioModel::where('id_ejercicio','!=',$rutinaEjercicios->id_ejercicio);
+        // $serie = SerieModel::where('id_serie',$rutinaEjercicios->serie_tipo)->firstOrFail();
+        $series = SerieModel::where('id_serie','!=',$rutinaEjercicios->serie_tipo)->firstOrFail();
+        return view('rutinas-ejercicios.edit',compact('rutinaEjercicios','ejercicios','rutinas','series'));
+        //dd($series,$rutinaEjercicios,$rutinas);
     }
 
     /**
@@ -96,6 +119,11 @@ class RutinasEjercicios extends Controller
     public function update(Request $request, $id)
     {
         
+        $rutinaEjercicios=RutinaEjercicioModel::where('id_rutina_ejercicio',$id)->firstOrfail();
+        $rutinaEjercicios=$this->createUpdateRutinasEjercicios($request, $rutinaEjercicios);
+        return redirect()->route('rutinasEjercicios.index')
+        ->with('message','Registro Actualizado Satisfactoriamente.');
+        //dd($rutinaEjercicios);
     }
 
     /**
@@ -107,17 +135,17 @@ class RutinasEjercicios extends Controller
     public function destroy($id)
     {
         $rutinaEjercicio=RutinaEjercicioModel::findOrfail($id);
-        // try{
-        //     $rutina->delete();
-        //     return redirect()
-        //     ->route('rutinasEjercicios.create')
-        //     ->with('danger','Registro Eliminado.');
-        // // }catch(QueryException $e){
-        //     return redirect()
-        //     ->route('rutinasEjercicios.create')
-        //     ->with('warning','El Registro No Puede Ser Eliminado.');
-        // }
-        dd($rutinaEjercicio);
+        try{
+            $rutinaEjercicio->delete();
+            return redirect()
+            ->route('rutinasEjercicios.index')
+            ->with('danger','Registro Eliminado.');
+        }catch(QueryException $e){
+            return redirect()
+            ->route('rutinasEjercicios.index')
+            ->with('warning','El Registro No Puede Ser Eliminado.');
+        }
+        //dd($rutinaEjercicio);
         
     }
 }
