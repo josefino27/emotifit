@@ -23,9 +23,14 @@
             @if(isset($rutinaEjercicios))
             <option id="id_ejercicio" name="id_ejercicio" value="{{$rutinaEjercicios->id_ejercicio}}">{{$rutinaEjercicios->nombre_ejercicio}}</option>
             @endif
+            @if(request()->routeIs('rutinasEjercicios.edit'))
+                <option id="id_ejercicio" name="id_ejercicio" value="{{$ejercicios->id_ejercicio}}">{{$ejercicios->nombre_ejercicio}}</option>
+            @endif
+            @if(request()->routeIs('rutinasEjercicios.create'))
                 @foreach ($ejercicios as $ejercicio)
-                <option id="id_ejercicio" name="id_ejercicio" value="{{$ejercicio->id_ejercicio}}">{{$ejercicio->nombre_ejercicio}}</option>
+                    <option value="{{$ejercicio->id_ejercicio}}">{{$ejercicio->nombre_ejercicio}}</option>
                 @endforeach
+            @endif
         </select>
     </div>
     @endif

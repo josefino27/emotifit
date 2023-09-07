@@ -6,7 +6,7 @@
                   <option value="{{$rutina->nombre_rutina}}" > {{$rutina->id_rutina}}-{{$rutina->nombre_rutina}}</option>
             @endforeach
          </select>
-     <input type="text"  class="form-control" value="" wire:model="search" readonly >
+     <input type="text"  class="form-control" value="" wire:model.lazy="search" readonly >
     </div>
     @if($selectedRutina!="")
     <div>

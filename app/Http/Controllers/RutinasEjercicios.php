@@ -102,7 +102,7 @@ class RutinasEjercicios extends Controller
         $rutinas = RutinaModel::where('id_rutina',$rutinaEjercicios->id_rutina)->firstOrFail();
         //$rutinas = RutinaModel::all();
         // $ejercicio = EjercicioModel::where('id_ejercicio',$rutinaEjercicios->id_ejercicio)->firstOrFail();
-        $ejercicios = EjercicioModel::where('id_ejercicio','!=',$rutinaEjercicios->id_ejercicio);
+        $ejercicios = EjercicioModel::where('id_ejercicio','!=',$rutinaEjercicios->id_ejercicio)->firstOrFail();
         // $serie = SerieModel::where('id_serie',$rutinaEjercicios->serie_tipo)->firstOrFail();
         $series = SerieModel::where('id_serie','!=',$rutinaEjercicios->serie_tipo)->firstOrFail();
         return view('rutinas-ejercicios.edit',compact('rutinaEjercicios','ejercicios','rutinas','series'));
