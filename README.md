@@ -19,6 +19,9 @@ DOCKER :
 - PHP ARTISAN DB:SEED
 - PHP ARTISAN STORAGE:LINK
 
+- composer require spatie/laravel-permission
+
+
 - COPIAR DIRECTORIOS imagenesEjercicio y portafolio DE LA RUTA public/ Y PEGAR ESTOS DIRECTORIOS EN LA RUTA storage/app/public/
 
 
