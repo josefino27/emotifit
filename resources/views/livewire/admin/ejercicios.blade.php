@@ -1,6 +1,6 @@
 <div>
     <div class="card-header">
-        <input class="form-control" placeholder="Busquedad por nombre" wire:model="search">
+        <input class="form-control" placeholder="Busquedad por nombre" wire:model.lazy="search">
     </div>
 
     @if ($ejercicios->count())

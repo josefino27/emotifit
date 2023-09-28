@@ -18,4 +18,12 @@ class RutinaEjercicioModel extends Model
         'repeticiones',
         'duracion_segundos',
     ];
+
+    public function ejercicio(){
+        return $this->belongsTo(EjercicioModel::class);
+    }
+
+    public function rutina(){
+        return $this->belongsTo(RutinaModel::class);
+    }
 }
