@@ -38,6 +38,20 @@
                 </a>
 
             </li>
+            <li class="{{'userxemocion'==Request::is('userxemocion*')?'active':''}}">
+                <a href="{{route('userxemocion.index')}}">
+                    <i class="fas fa-heartbeat"></i>
+                    <b>UserxEmocion</b>
+                </a>
+
+            </li>
+            <li class="{{'emocionxusuarios'==Request::is('emocionxusuarios*')?'active':''}}">
+                <a href="{{route('emocionxusuarios.index')}}">
+                    <i class="fas fa-heartbeat"></i>
+                    <b>emocionxusuario</b>
+                </a>
+
+            </li>
 
             <li>
                 <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
