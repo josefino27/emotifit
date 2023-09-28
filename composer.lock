@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "24749a0570c00c9689a5cfdd07b5208b",
+    "content-hash": "4f383e2c35ba0a32273b7f45a667ff99",
     "packages": [
         {
             "name": "brick/math",
@@ -3015,16 +3015,16 @@
         },
         {
             "name": "spatie/laravel-permission",
-            "version": "5.10.1",
+            "version": "5.11.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-permission.git",
-                "reference": "d08b3ffc5870cce4a47a39f22174947b33c191ae"
+                "reference": "0a35e99da4cb6f85b07b3b58b718ff659c39a009"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/d08b3ffc5870cce4a47a39f22174947b33c191ae",
-                "reference": "d08b3ffc5870cce4a47a39f22174947b33c191ae",
+                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/0a35e99da4cb6f85b07b3b58b718ff659c39a009",
+                "reference": "0a35e99da4cb6f85b07b3b58b718ff659c39a009",
                 "shasum": ""
             },
             "require": {
@@ -3085,7 +3085,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-permission/issues",
-                "source": "https://github.com/spatie/laravel-permission/tree/5.10.1"
+                "source": "https://github.com/spatie/laravel-permission/tree/5.11.0"
             },
             "funding": [
                 {
@@ -3093,7 +3093,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-04-12T17:08:32+00:00"
+            "time": "2023-08-30T23:41:24+00:00"
         },
         {
             "name": "symfony/console",
@@ -8110,5 +8110,5 @@
         "php": "^8.0.2"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }
