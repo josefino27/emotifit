@@ -83,6 +83,7 @@ class ClaseController extends Controller
     {
         $clase=ClaseModel::where('id_clase',$id)->firstOrfail();
         return view('clases.show', compact('clase'));
+        
     }
 
     /**

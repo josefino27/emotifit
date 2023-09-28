@@ -11,8 +11,10 @@ use Livewire\WithPagination;
 class RutinasEjercicios extends Component
 {
     public $search;
-    public $sort='rutinas.id_rutina';
+    public $sort='rutinas_ejercicios.id_rutina_ejercicio';
     public $direction='asc';
+    public $select_ejercicio = 'rutinas_ejercicios.id_ejercicio';
+    public $select_serie = 'rutinas_ejercicios.serie_tipo';
     protected $paginationTheme="bootstrap";
 
 

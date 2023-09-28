@@ -10,9 +10,16 @@
             </a>
         </div>
         <div class="card-body">
-            <form enctype="multipart/form-data">
+            <form action="{{ route('rutinasEjercicios.update', $rutinaEjercicios->id_rutina_ejercicio) }}" method="POST" enctype="multipart/form-data"
+                id="crear">
+                @method('put')
                 @include('rutinas-ejercicios.form.form')
             </form>
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-primary" form="crear">
+                <i class="fas fa-edit"></i> Editar rutina ejercicios
+            </button>
         </div>
     </div>
 @endsection

@@ -38,6 +38,20 @@
                 </a>
 
             </li>
+            <li class="{{'userxemocion'==Request::is('userxemocion*')?'active':''}}">
+                <a href="{{route('userxemocion.index')}}">
+                    <i class="fas fa-heartbeat"></i>
+                    <b>UserxEmocion</b>
+                </a>
+
+            </li>
+            <li class="{{'emocionxusuarios'==Request::is('emocionxusuarios*')?'active':''}}">
+                <a href="{{route('emocionxusuarios.index')}}">
+                    <i class="fas fa-heartbeat"></i>
+                    <b>emocionxusuario</b>
+                </a>
+
+            </li>
 
             <li>
                 <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
@@ -59,7 +73,7 @@
                     </li>
                 </ul>
 
-            <li class="{{'rutinas'==Request::is('rutinas*')?'active':''}}">
+            <li class="{{'rutinas'==Request::is('rutinas')?'active':''}}">
                 <a href="{{route('rutinas.index')}}">
                     <i class="fas fa-book"></i>
                     <b>Rutina</b>
@@ -67,7 +81,7 @@
 
             </li>
 
-            <li class="{{'rutinasEjercicios'==Request::is('rutinasEjercicios*')?'active':''}}">
+            <li class="{{'rutinasEjercicios'==Request::is('rutinasEjercicios')?'active':''}}">
                 <a href="{{route('rutinasEjercicios.index')}}">
                     <i class="fas fa-address-book"></i>
                     <b>Rutina Ejercicios</b>
