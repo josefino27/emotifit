@@ -24,7 +24,9 @@ class EjercicioController extends Controller
     public function index()
     {
 
-        return view('ejercicios.index');
+        $musculos = MusculoModel::all();
+        return response()->json($musculos);
+        //return view('ejercicios.index');
     }
 
     /**

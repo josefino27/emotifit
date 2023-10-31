@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClaseController;
+use App\Http\Controllers\EjercicioController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::resource('clases',ClaseController::class);
+Route::resource('ejercicios',EjercicioController::class);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

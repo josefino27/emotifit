@@ -34,7 +34,8 @@ class ClaseController extends Controller
             ->orWhere('descripcion','like', '%'.$request->buscar.'%');
         }
         $clases=$clases->paginate($limit)->appends($request->all());
-        return view('clases.index', compact('clases'));
+        //return view('clases.index', compact('clases'));
+        return response()->json($clases);
     }
 
     /**
