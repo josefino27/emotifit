@@ -22,18 +22,18 @@ class ClaseController extends Controller
         // $response->header('Access-Control-Allow-Origin', '*');
         // $response->header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
         // $response->header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    
-        // return $response;
-        $clases=ClaseModel::select('*')->orderBy('id_clase','ASC');
-        $limit=(isset($request->limit)) ? $request->limit:5;
 
-        if(isset($request->buscar)){
-            $clases=$clases->where('id_clase', 'like', '%'.$request->buscar.'%')
-            ->orWhere('nombreClase','like', '%'.$request->buscar.'%')
-            ->orWhere('cupo','like', '%'.$request->buscar.'%')
-            ->orWhere('descripcion','like', '%'.$request->buscar.'%');
+        // return $response;
+        $clases = ClaseModel::select('*')->orderBy('id_clase', 'ASC');
+        $limit = (isset($request->limit)) ? $request->limit : 5;
+
+        if (isset($request->buscar)) {
+            $clases = $clases->where('id_clase', 'like', '%' . $request->buscar . '%')
+                ->orWhere('nombreClase', 'like', '%' . $request->buscar . '%')
+                ->orWhere('cupo', 'like', '%' . $request->buscar . '%')
+                ->orWhere('descripcion', 'like', '%' . $request->buscar . '%');
         }
-        $clases=$clases->paginate($limit)->appends($request->all());
+        $clases = $clases->paginate($limit)->appends($request->all());
         //return view('clases.index', compact('clases'));
         return response()->json($clases);
     }
@@ -56,21 +56,23 @@ class ClaseController extends Controller
      */
     public function store(Request $request)
     {
-        $clase=new ClaseModel();
-        $clase=$this->createUpdateClases($request, $clase);
+        $clase = new ClaseModel();
+        $clase = $this->createUpdateClases($request, $clase);
         return redirect()
-        ->route('clases.index')
-        ->with('message','Registro Creado Satisfactoriamente.');
+            ->route('clases.index')
+            ->with('message', 'Registro Creado Satisfactoriamente.');
     }
-    public function createUpdateClases(Request $request,$clase)
+    public function createUpdateClases(Request $request, $clase)
     {
-        $clase->nombreClase=$request->nombreClase;
-        $clase->cupo=$request->cupo;
-        $clase->fecha=$request->fecha;
-        $clase->comienza=$request->comienza;
-        $clase->termina=$request->termina;
-        $clase->descripcion=$request->descripcion;
-        if($request->hasfile('imagen')){$clase->imagen=$request->file('imagen')->store('portafolio','public');}
+        $clase->nombreClase = $request->nombreClase;
+        $clase->cupo = $request->cupo;
+        $clase->fecha = $request->fecha;
+        $clase->comienza = $request->comienza;
+        $clase->termina = $request->termina;
+        $clase->descripcion = $request->descripcion;
+        if ($request->hasfile('imagen')) {
+            $clase->imagen = $request->file('imagen')->store('portafolio', 'public');
+        }
         $clase->save();
         return $clase;
     }
@@ -82,9 +84,8 @@ class ClaseController extends Controller
      */
     public function show($id)
     {
-        $clase=ClaseModel::where('id_clase',$id)->firstOrfail();
+        $clase = ClaseModel::where('id_clase', $id)->firstOrfail();
         return view('clases.show', compact('clase'));
-        
     }
 
     /**
@@ -95,7 +96,7 @@ class ClaseController extends Controller
      */
     public function edit($id)
     {
-        $clase=ClaseModel::where('id_clase',$id)->firstOrfail();
+        $clase = ClaseModel::where('id_clase', $id)->firstOrfail();
         return view('clases.edit', compact('clase'));
     }
 
@@ -108,11 +109,11 @@ class ClaseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $clase=ClaseModel::where('id_clase',$id)->firstOrfail();
-        $clase=$this->createUpdateClases($request, $clase);
+        $clase = ClaseModel::where('id_clase', $id)->firstOrfail();
+        $clase = $this->createUpdateClases($request, $clase);
         return redirect()
-        ->route('clases.index')
-        ->with('message','Registro Actualizado Satisfactoriamente.');
+            ->route('clases.index')
+            ->with('message', 'Registro Actualizado Satisfactoriamente.');
     }
 
     /**
@@ -123,16 +124,16 @@ class ClaseController extends Controller
      */
     public function destroy($id)
     {
-        $clase=ClaseModel::findOrfail($id);
-        try{
+        $clase = ClaseModel::findOrfail($id);
+        try {
             $clase->delete();
             return redirect()
-            ->route('clases.index')
-            ->with('danger','Registro Eliminado.');
-        }catch(QueryException $e){
+                ->route('clases.index')
+                ->with('danger', 'Registro Eliminado.');
+        } catch (QueryException $e) {
             return redirect()
-            ->route('clases.index')
-            ->with('warning','El Registro No Puede Ser Eliminado.');
+                ->route('clases.index')
+                ->with('warning', 'El Registro No Puede Ser Eliminado.');
         }
     }
 }
