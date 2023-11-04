@@ -6,7 +6,7 @@
                   <option value="{{$rutina->nombre_rutina}}" > {{$rutina->id_rutina}}-{{$rutina->nombre_rutina}}</option>
             @endforeach
          </select>
-     <input type="text"  class="form-control" value="" wire:model.lazy="search" readonly >
+     <input type="text"  class="form-control" value="" wire:model="search" readonly >
     </div>
     @if($selectedRutina!="")
     <div>
@@ -22,6 +22,7 @@
                                 <th role="button" wire:click="order('tipo')">Serie</th>
                                 <th role="button" wire:click="order('repeticiones')">Repeticiones</th>
                                 <th role="button" wire:click="order('duracion_segundos')">Segundos</th>
+                                <th role="button" wire:click="order('imagen_ejercicio')">Imagen</th>
                                 <th role="button">Accion</th>
                             </tr>
                             </tr>
@@ -36,6 +37,7 @@
                                     <td>{{ $rutinaEjercicio->tipo }}</td>
                                     <td>{{ $rutinaEjercicio->repeticiones }}</td>
                                     <td>{{ $rutinaEjercicio->duracion_segundos }}</td>
+                                    <td><img src="{{ $rutinaEjercicio->imagen_ejercicio }}" alt="{{ $rutinaEjercicio->nombre_ejercicio }}" width="100"></td>
                                     <td width="200px">
                                         <a href="{{ route('rutinasEjercicios.show', $rutinaEjercicio->id_rutina_ejercicio) }}"><i
                                                 class="fas fa-eye"></i></a>

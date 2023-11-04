@@ -15,16 +15,23 @@ class Rutinas extends Component
 
     public function render()
     {
-        // $ejercicios = EjercicioModel::join('musculos','ejercicios.id_musculo','=','musculos.id')
-        // ->where('nombre_ejercicio','like','%'.$this->search.'%')
-        // ->orderBy($this->sort,$this->direction)
-        // ->paginate(10);
         $rutina = RutinaModel::where('nombre_rutina','like','%'.$this->search.'%')
         ->orderBy($this->sort2,$this->direction)
         ->paginate(10);
         return view('livewire.admin.rutinas', compact('rutina'))->layout('rutinas.index');;
 
-        
-    
+    }
+    public function order($sort){
+        if($this->sort == $sort){
+            if($this->direction == 'desc'){
+                $this->direction = 'asc';
+            }else{
+                $this->direction = 'desc';       
+            };
+
+        }else{
+            $this->sort=$sort;
+            $this->direction = 'asc';
+        };
     }
 }

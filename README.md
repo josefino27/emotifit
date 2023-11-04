@@ -25,6 +25,8 @@ DOCKER :
 - COPIAR DIRECTORIOS imagenesEjercicio y portafolio DE LA RUTA public/ Y PEGAR ESTOS DIRECTORIOS EN LA RUTA storage/app/public/
 
 
+- solucion al error ...filed to opne stream... ejecutar dentro del contenedor de php = chmod -R 777 vendor storage
+
 
 
 

@@ -31,17 +31,10 @@
                 </a>
             </li>
             @endcan
-            <li class="{{'emocion'==Request::is('emocion*')?'active':''}}">
+            <li class="{{'emocion'==Request::is('emocion')?'active':''}}">
                 <a href="{{route('emocion.index')}}">
                     <i class="fas fa-heartbeat"></i>
                     <b>Emocion</b>
-                </a>
-
-            </li>
-            <li class="{{'userxemocion'==Request::is('userxemocion*')?'active':''}}">
-                <a href="{{route('userxemocion.index')}}">
-                    <i class="fas fa-heartbeat"></i>
-                    <b>UserxEmocion</b>
                 </a>
 
             </li>

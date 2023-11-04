@@ -12,9 +12,14 @@
                 @includeif('partials.errors')
 
                 <div class="card card-default">
-                    <div class="card-header">
-                        <span class="card-title">{{ __('Create') }} Emocionxusuario</span>
+                    <div class="card-header d-inline-flex">
+                        <span class="card-title">{{ __('Crear') }} Emocionxusuario</span>
+                        <a href="{{route('emocionxusuarios.index')}}" class="btn btn-primary ms-auto">
+                            <i class="fas fa-arrow-left"></i>
+                            Volver
+                        </a>
                     </div>
+
                     <div class="card-body">
                         <form method="POST" action="{{ route('emocionxusuarios.store') }}"  role="form" enctype="multipart/form-data">
                             @csrf

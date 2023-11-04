@@ -17,4 +17,9 @@ class EjercicioModel extends Model
         'id_musculo',
         'imagen_ejercicio'
     ];
+
+    public function musculo()
+    {
+        return $this->hasOne('App\Models\MusculoModel', 'id', 'id_musculo');
+    }
 }

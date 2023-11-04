@@ -1,6 +1,6 @@
 <div>
     <div class="card-header">
-        <input class="form-control" placeholder="Busquedad por nombre" wire:model.lazy="search">
+        <input class="form-control" placeholder="Busquedad por nombre" wire:model="search">
     </div>
 
     @if ($ejercicios->count())
@@ -11,7 +11,7 @@
                         <tr>
                             <th role="button" wire:click="order('id_ejercicio')">Id</th>
                             <th role="button" wire:click="order('nombre_ejercicio')">Nombre</th>
-                            <th role="button" wire:click="order('nombre_ejercicio')">Categoria</th>
+                            <th role="button" wire:click="order('nombre')">Categoria</th>
                             <th role="button" wire:click="order('descripcion')">Descripcion</th>
                             <th role="button" wire:click="order('imagen_ejercicio')">imagen</th>
                             <th>Accion</th>

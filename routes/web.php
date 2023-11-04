@@ -96,7 +96,6 @@ Route::group(['middleware'=>['auth']], function(){
     Route::resource('musculos',MusculoController::class);
     Route::resource('rutinasEjercicios',RutinasEjercicios::class);
     Route::resource('emocion',EmocionController::class);
-    Route::resource('userxemocion',UserxEmocionController::class);
     Route::resource('emocionxusuarios',EmocionxusuarioController::class);
 });
 
