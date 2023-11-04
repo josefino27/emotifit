@@ -10,7 +10,7 @@
                     <thead>
                         <tr>
                             <th role="button" wire:click="order('id')">Id</th>
-                            <th role="button" wire:click="order('nombre-musculo')">Nombre</th>
+                            <th role="button" wire:click="order('nombre')">Nombre</th>
                             <th>Accion</th>
                         </tr>
                     </thead>

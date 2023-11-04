@@ -63,7 +63,7 @@
                         <a href="#">Por Categoria</a>
                     </li>
                     <li>
-                        <a href="#">Por Musculo</a>
+                        <a href="{{ route('musculos.create') }}">Por Musculo</a>
                     </li>
                     <li>
                         <a href="#">Por Equipamiento</a>
