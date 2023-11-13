@@ -8,7 +8,7 @@
 
         <ul class="list-unstyled components">
             <li class="{{'home'==request()->path()?'active':''}}">
-                <a href="{{url('/home')}}">
+                <a href="{{url('posts')}}">
                     <i class="fas fa-home"></i>
                     <b>Home</b>
                 </a>

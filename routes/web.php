@@ -17,6 +17,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\MusculoController;
 use App\Http\Controllers\RutinasEjercicios;
 use App\Http\Controllers\UserxEmocionController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -98,8 +99,10 @@ Route::group(['middleware'=>['auth']], function(){
     Route::resource('emocion',EmocionController::class);
     Route::resource('userxemocion',UserxEmocionController::class);
     Route::resource('emocionxusuarios',EmocionxusuarioController::class);
+    Route::resource('posts',PostController::class);
 });
 
 
 
 // Route::post('calcularIMC',[ImcController::class,'store'])->name('calcularIMC');
+
