@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Spatie\permisos\models\permisos;
 use Spatie\Permission\Models\Role;
 
@@ -25,7 +26,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user=UserController::where('id',$id)->firstOrfail();
+        $user=User::where('id',$id)->firstOrfail();
         return view('users.show', compact('user'));
     }
 
@@ -38,7 +39,10 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $roles = Role::all();
-        return view('users.edit', compact('user','roles'));
+        $infoUser = Auth::user();
+        $userRoles = $user->roles->pluck('id')->toArray();
+    //return view('users.edit', compact('user','roles','userRoles'));
+        return dd ($userRoles);
     }
 
     /**
@@ -50,7 +54,7 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        
+        $user->update(['name'=>$request->nombre]);
         $user->roles()->sync($request->roles);
         return redirect()->route('users.edit', $user)->with('info', 'Se asignó correctamente los roles.');
     }

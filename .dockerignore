@@ -1,9 +1,0 @@
-/.git
-/htdocs/content/uploads
-/docker/docker_dump
-/docker/docker_mysql
-/vendor
-**/node_modules
-/wp-content/uploads
-log
-/web/sites/default/files

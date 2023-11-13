@@ -34,7 +34,10 @@ class RoleController extends Controller
     public function create()
     {
         $permissions= Permission::all();
-        return view('roles.create',compact('permissions'));
+        
+        $permissionsWithStatus = [];
+        
+        return view('roles.create',compact('permissions','permissionsWithStatus'));
     }
 
     /**
@@ -58,8 +61,15 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
+        $permissions = Permission::all();
 
-        return view('roles.show', compact('role'));
+        $permissionsWithStatus = $permissions->map(function ($permission) use ($role) {
+            return [
+                'permission' => $permission,
+                'checked' => $role->hasPermissionTo($permission->name),
+            ];
+        });  
+        return view('roles.show', compact('role','permissionsWithStatus'));
     }
 
     /**
@@ -72,7 +82,15 @@ class RoleController extends Controller
     {
         $permissions = Permission::all();
         $role=Role::where('id',$id)->firstOrfail();
-        return view('roles.edit', compact('role','permissions'));
+        // una matriz de permisos y establece 'checked' en verdadero si el rol tiene ese permiso
+        $permissionsWithStatus = $permissions->map(function ($permission) use ($role) {
+            return [
+                'permission' => $permission,
+                'checked' => $role->hasPermissionTo($permission->name),
+            ];
+        });       
+        // return dd($permissionsWithStatus);
+        return view('roles.edit', compact('role','permissions','permissionsWithStatus'));
     }
     public function createUpdateRoles(Request $request,$role)
     {
@@ -87,7 +105,9 @@ class RoleController extends Controller
     {
 
         $role->update($request->all());
-        $role->permissions()->sync($request->permissions);
+        $permissions = $request->input('permissions', []);
+        //$role->permissions()->sync($request->permissions);
+        $role->syncPermissions($permissions);
         return redirect()->route('role.index')->with('info','Actualizado Satisfactoriamente');
     }
 

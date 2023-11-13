@@ -8,13 +8,13 @@
         </div>
     </div>
     <H3>Lista de permisos</H3>
-    @foreach ($permissions as $permission)
-        <div>
-            <label>
-                {!! Form::checkbox('permissions[]', $permission->id, null, ['class' => 'mr-1']) !!}
-                {{ $permission->description }}
-            </label>
-        </div>
-    @endforeach
+
+    @foreach ($permissionsWithStatus as $permissionStatus)
+    <label>
+        <input type="checkbox" name="permissions[]" value="{{ $permissionStatus['permission']->name }}" {{ $permissionStatus['checked'] ? 'checked' : '' }}>
+        {{ $permissionStatus['permission']->name }}
+    </label>
+@endforeach
+
 
     <div>
