@@ -1,4 +1,4 @@
-@if ( session('message') )        
+@if ( session('message') )
     @component( 'components.alert' )
         @slot( 'class', 'success' )
         @slot( 'name', 'Exito' )
@@ -22,7 +22,7 @@
 @if (session('danger'))
     @component( 'components.alert' )
         @slot( 'class', 'danger' )
-        @slot( 'name', 'Exito' )
+        @slot( 'name', 'Error' )
         @slot( 'message', session('danger') )
     @endcomponent
 @endif

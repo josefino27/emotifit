@@ -33,5 +33,13 @@ class userSeeder extends Seeder
 
         User::factory(99)->create();
 
+        $excludedEmails = ['pechesito1@gmail.com', 'juanobando518@gmail.com', 'stiven19782001@gmail.com'];
+
+        $usuariosExcluidos = User::whereNotIn('email', $excludedEmails)->get();
+                // Asignar el rol 'Usuario' a todos los usuarios
+                foreach ($usuariosExcluidos as $usuario) {
+                    $usuario->assignRole('Usuario');
+                }
+
     }
 }

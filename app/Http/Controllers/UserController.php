@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Spatie\permisos\models\permisos;
 use Spatie\Permission\Models\Role;
 
@@ -26,7 +27,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user=User::where('id',$id)->firstOrfail();
+        $user = User::where('id', $id)->firstOrfail();
         return view('users.show', compact('user'));
     }
 
@@ -41,8 +42,8 @@ class UserController extends Controller
         $roles = Role::all();
         $infoUser = Auth::user();
         $userRoles = $user->roles->pluck('id')->toArray();
-    //return view('users.edit', compact('user','roles','userRoles'));
-        return dd ($userRoles);
+        return view('users.edit', compact('user', 'roles', 'userRoles'));
+        //return dd ($userRoles);
     }
 
     /**
@@ -54,9 +55,38 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $user->update(['name'=>$request->nombre]);
+
+        // $validatedData = $request->validate([
+        //     'title' => ['required', 'unique:posts', 'max:255'],
+        //     'body' => ['required'],
+        // ]);
+
+        //$user->name = $request->name;
+        //$user->email = $request->email;
+
+        // Verifica si se ha proporcionado una nueva contraseña
+        if (isset($request->password)) {
+
+            $request->validate([
+                'current_password' => ['required'],
+                'password' => ['required', 'confirmed'],
+                'password_confirmation' => ['required']
+            ]);
+
+             // Verifica si la contraseña actual ingresada coincide con la contraseña almacenada
+            if (!Hash::check($request->current_password, $user->password)) {
+                return redirect()->route('users.edit', $user)->with('danger', 'La contraseña actual es incorrecta.');
+            }
+
+            $user->password = Hash::make($request->password);
+        }
+
+        $user->update(['name' => $request->name]);
+
+        $user->save();
         $user->roles()->sync($request->roles);
-        return redirect()->route('users.edit', $user)->with('info', 'Se asignó correctamente los roles.');
+
+        return redirect()->route('users.edit', $user)->with('info', 'Registro actualizado correctamente.');
     }
 
     /**

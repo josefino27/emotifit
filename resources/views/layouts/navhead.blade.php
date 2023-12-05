@@ -40,9 +40,14 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDarkDropdownMenuLink" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                            {{ Auth::user()->name }}
+                            {{ Str::limit(Auth::user()->name, 4) }}
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="navbarDarkDropdownMenuLink">
+                            <li>
+                                <span class="dropdown-item text-white">{{ Auth::user()->name }}</span>
+
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
                             <li>
                                 <a class="dropdown-item text-white" href="{{ url('users/'.Auth::user()->id.'/edit') }}">{{ __('Editar Perfil') }}</a>
                             </li>
