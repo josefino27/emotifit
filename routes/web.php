@@ -90,7 +90,7 @@ Route::group(['middleware'=>['auth']], function(){
     Route::resource('reservas',reservasController::class);
     Route::resource('nutricion',NutricionController::class);
     Route::resource('ejercicios',EjercicioController::class);
-    Route::resource('permisos',permisosController::class);
+    //Route::resource('permisos',permisosController::class);
     Route::resource('role',RoleController::class);
     Route::get('user',UserIndex::class);
     Route::resource('users',UserController::class);
