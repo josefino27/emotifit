@@ -31,7 +31,7 @@ class userSeeder extends Seeder
             'password'=>'$2y$10$hykAlxq7x/D9oH6wmqmdQOAPTOHu1C7yyaHbDCaNIRUCpM7YNKvjq', // contraseña
         ])->assignRole('Admin');
 
-        User::factory(99)->create();
+        // User::factory(99)->create();
 
         // $excludedEmails = ['pechesito1@gmail.com', 'juanobando518@gmail.com', 'stiven19782001@gmail.com'];
 
