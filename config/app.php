@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost:8080'),
+    'url' => env('APP_URL', 'https://emotifit-production.up.railway.app/'),
 
     'asset_url' => env('ASSET_URL'),
 
