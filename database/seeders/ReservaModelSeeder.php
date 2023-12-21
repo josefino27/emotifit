@@ -22,7 +22,7 @@ class ReservaModelSeeder extends Seeder
         ]);
         ReservaModel::create([
             'id_clase'=>'2',
-            'id_usuario'=>'11'
+            'id_usuario'=>'1'
         ]);
         ReservaModel::create([
             'id_clase'=>'3',
