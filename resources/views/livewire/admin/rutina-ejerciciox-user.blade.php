@@ -15,7 +15,8 @@
                     <p class="card-text">{{ $rutinaEjerciciosT[$time]->descripcion }}</p>
                     @if ($rutinaEjerciciosT[$time]->tipo === 'tiempo')
                         <p>
-                        <div id="timer"><span
+                        <div id="timer">
+                            <span
                                 id="contador">{{ $valorInicial = $rutinaEjerciciosT[$time]->duracion_segundos }}
                             </span>
                             Segundos
@@ -62,9 +63,12 @@
                                         if (contador <= 0) {
                                             clearInterval(intervalo); // Detiene el intervalo cuando el contador llega a 0
                                             // Puedes agregar más lógica aquí al llegar a 0
+                                            contador = {{ $valorInicial }};
+                                            actualizarContador();
                                             btnSiguiente.removeAttribute("disabled");
                                             btnAnterior.removeAttribute("disabled");
-                                            btnSiguiente.onclick();
+                                            //btnSiguiente.onclick(); // no esta funcionando
+
                                         }
                                     }, 1000); // Actualiza cada segundo
                                 }
