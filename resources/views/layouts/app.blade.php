@@ -25,7 +25,6 @@
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
     <!-- Our Custom CSS -->
     <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
-
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
         integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous">
@@ -37,6 +36,9 @@
 </head>
 
 <body>
+    @if (request()->routeIs('rutinaEjercicioxUser.show'))
+    @yield('modal')
+    @else
     <div id="app" class="wrapper">
         @guest
         @else
@@ -51,6 +53,7 @@
             </main>
         </div>
     </div>
+    @endif
     @livewireScripts()
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

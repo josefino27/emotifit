@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('rutina_ejerciciox_user', function (Blueprint $table) {
             $table->increments('id_rutinaEjercicioxUser');
-            $table->integer('id_rutina_ejercicio')->unsigned();
+            $table->integer('id_rutina')->unsigned();
             $table->integer('id_usuario')->unsigned();
-            $table->foreign('id_rutina_ejercicio')->references('id_rutina_ejercicio')->on('rutinas_ejercicios');
+            $table->foreign('id_rutina')->references('id_rutina')->on('rutinas');
             $table->foreign('id_usuario')->references('id')->on('users');
             $table->Date('fecha');
             $table->time('comienza');

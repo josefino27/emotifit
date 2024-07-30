@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\rutinaEjercicioxUserModel;
 use App\Models\RutinaModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -36,7 +37,20 @@ class rutinaEjercicioxUserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rutinaEjercicioxUser = new rutinaEjercicioxUserModel();
+        $rutinaEjercicioxUser=$this->createUpdateRutinaejercicioxUser($request, $rutinaEjercicioxUser);
+        return redirect()->route('rutinas.index')->with('message','Rutina Realizada Satisfactoriamente.');
+        //dd($request);
+    }
+    public function createUpdateRutinaejercicioxUser(Request $request,$rutinaEjercicioxUser)
+    {
+        $rutinaEjercicioxUser->id_rutina=$request->id_rutina;
+        $rutinaEjercicioxUser->id_usuario=$request->id_user;
+        $rutinaEjercicioxUser->fecha=$request->fecha;
+        $rutinaEjercicioxUser->comienza=$request->comienza;
+        $rutinaEjercicioxUser->termina=$request->termina;
+        $rutinaEjercicioxUser->save();
+        return $rutinaEjercicioxUser;
     }
 
     /**
@@ -45,12 +59,12 @@ class rutinaEjercicioxUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($nombre_rutina)
+    public function show($id_rutina)
     {
         $id_user=Auth::user()->id;
-        $id_user=(Int)($id_user);
-        return view('rutinas-ejercicios.modal', compact('nombre_rutina','id_user'));
-        //dd($id_user);
+        $comienza = date('H:i:s');
+        return view('rutinas-ejercicios.modal', compact('id_rutina','id_user','comienza'));
+        //dd($nombre_rutina);
     }
 
     /**

@@ -3,7 +3,7 @@
         <select class="form-control mr-sm-2" wire:model="selectedRutina">
             <option value=''>Selecciona rutina de ejercicios</option>
             @foreach ($rutinas as $rutina)
-                <option value="{{ $rutina->nombre_rutina }}"> {{ $rutina->id_rutina }}-{{ $rutina->nombre_rutina }}
+                <option value="{{ $rutina->id_rutina }}"> {{ $rutina->id_rutina }}-{{ $rutina->nombre_rutina }}
                 </option>
             @endforeach
         </select>
@@ -96,9 +96,10 @@
         @if ($rutinaEjercicios->count())
             <div class="card mt-3">
                 <a href="{{ route('rutinaEjercicioxUser.show',$this->search) }}">
-                    <h5>Realizar rutina</h5>
+                    <h5>Realizar rutina </h5>
                 </a>
             </div>
+
         @endif
     @endif
 

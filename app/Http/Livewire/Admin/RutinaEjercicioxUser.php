@@ -3,8 +3,6 @@
 namespace App\Http\Livewire\Admin;
 
 use App\Models\RutinaEjercicioModel;
-use App\Models\RutinaModel;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class RutinaEjercicioxUser extends Component
@@ -12,19 +10,19 @@ class RutinaEjercicioxUser extends Component
     protected $paginationTheme="bootstrap";
 
     public $search;
+    public $id_rutina;
+    public $nombre_rutina;
     public $id_user;
-    public $show = 'hide';
-    public $showT = 'hide';
     public $time=0;
     public $finaliza = false;
     public $count = 0;
+    public $fecha;
+    public $comienza;
+    public $valorInicial;
+    public $ocultar;
+    public $contador = 0;
 
 
-    public function siguiente()
-    {
-        $this->show = 'show';
-         $this->time++;
-    }
         public function anterior()
     {
         $this->time--;
@@ -32,18 +30,9 @@ class RutinaEjercicioxUser extends Component
     public function finaliza()
     {
         $this->time;
+        $this->ocultar = 'hidden';
         $this->finaliza = true;
 
-    }
-
-    public function redireccionar() {
-        //$id_rutina=RutinaModel::select('id_rutina')->where('nombre_rutina',$this->search)->get();
-
-        dd((int)($this->id_user));
-        // Luego, redirige a la nueva ruta
-        // return redirect()
-        // ->route('rutinasEjercicios.store')
-        // ->with('message', 'Finalizaste la rutina de ejercicio Satisfactoriamente.');
     }
 
     public function cancelarRutina() {
@@ -52,12 +41,18 @@ class RutinaEjercicioxUser extends Component
         return redirect()
         ->route('rutinasEjercicios.index');
     }
+    protected $listeners = ['actualizarContador' => '$refresh'];
 
-
-    public function mount($nombre_rutina,$id_user)
+    public function siguiente()
     {
-        $this->search = $nombre_rutina;
+        $this->time++;
+    }
+    public function mount($id_rutina,$id_user,$comienza)
+    {
+        $this->id_rutina = $id_rutina;
         $this->id_user = $id_user;
+        $this->fecha = date('Y-m-d');
+        $this->comienza = $comienza;
     }
     public function render()
     {
@@ -71,12 +66,14 @@ class RutinaEjercicioxUser extends Component
                 'ejercicios.nombre_ejercicio',
                 'ejercicios.descripcion',
                 'ejercicios.imagen_ejercicio',
+                'rutinas.id_rutina',
                 'rutinas.nombre_rutina',
                 'series.tipo'
             )
-            ->where('rutinas.nombre_rutina', 'like', '%' . $this->search . '%')
+            ->where('rutinas.id_rutina', '=', $this->id_rutina)
             ->paginate();
-        return view('livewire.admin.rutina-ejerciciox-user', compact('rutinaEjerciciosT'))->layout('rutinas-ejercicios.modal');
+
+    return view('livewire.admin.rutina-ejerciciox-user', compact('rutinaEjerciciosT'))->layout('rutinas-ejercicios.modal');
         //dd($rutinaEjerciciosT);
     }
 

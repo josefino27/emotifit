@@ -47,7 +47,7 @@ class RutinaController extends Controller
         if($radiocheck['dia_entreno'] > 0){
             $rutina=$this->createUpdaterutinas($request, $rutina);
         }
-        return redirect()->route('rutinas.index')->with('message','Rutina Creada Satisfactoriamente.');
+        return redirect()->route('rutinasEjercicios.index')->with('message','Rutina Creada Satisfactoriamente.');
     }
     public function createUpdaterutinas(Request $request,$rutina)
     {
@@ -68,7 +68,7 @@ class RutinaController extends Controller
         $rutina=RutinaModel::where('rutinas.id_rutina',$id)->firstOrfail();
         $rutina->dia_entreno=explode(',',$rutina->dia_entreno);
         //dd($rutina->dia_entreno);
-        return view('rutinas.show', compact('rutina')); 
+        return view('rutinas.show', compact('rutina'));
     }
 
     /**
@@ -82,7 +82,7 @@ class RutinaController extends Controller
         $rutina=RutinaModel::where('rutinas.id_rutina',$id)->firstOrfail();
         $rutina->dia_entreno=explode(',',$rutina->dia_entreno);
         //dd($rutina->dia_entreno);
-        return view('rutinas.edit', compact('rutina'));  
+        return view('rutinas.edit', compact('rutina'));
     }
 
     /**
@@ -102,7 +102,7 @@ class RutinaController extends Controller
         // ->join('rutinas','rutinas_ejercicio.id_rutina','=','rutinas.id_rutina')
         // ->where('rutinas.id_rutina','=',$id)
         // ->orderBy("rutinas_ejercicio.id_rutina_ejercicio","asc")
-        // ->paginate(10); 
+        // ->paginate(10);
         return redirect()
         ->route('rutinas.index')
         ->with('message', 'Registro Actualizado Satisfactoriamente.');

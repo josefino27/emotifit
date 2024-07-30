@@ -9,9 +9,9 @@
             <option value="{{$rutina->id_rutina}}">{{$rutina->nombre_rutina}}</option>
             @endforeach
             @elseif(request()->routeIs('rutinasEjercicios.edit'))
-            <option value="{{$rutinas->id_rutina}}">{{$rutinas->nombre_rutina}}</option> 
+            <option value="{{$rutinas->id_rutina}}">{{$rutinas->nombre_rutina}}</option>
             @else
-            <option value="{{$rutinas->id_rutina}}">{{$rutinas->nombre_rutina}}</option> 
+            <option value="{{$rutinas->id_rutina}}">{{$rutinas->nombre_rutina}}</option>
             @endif
         </select>
     </div>
@@ -56,12 +56,12 @@
     @if(isset($rutinaEjercicios))
     <div class="col-md-3">
         <label for="repeticion" class="form-label" id="repeticion">{{isset($rutinaEjercicios->repeticiones)?"Repeticiones":"Segundos";}}</label>
-        <input type="number" id="tipo" name="repeticiones" style="width:50px;" value="{{isset($rutinaEjercicios->repeticiones)?$rutinaEjercicios->repeticiones:$rutinaEjercicios->duracion_segundos}}" />
+        <input type="number" id="tipo" name="repeticiones" style="width:50px;" value="{{isset($rutinaEjercicios->repeticiones)?$rutinaEjercicios->repeticiones:$rutinaEjercicios->duracion_segundos}}" required/>
     </div>
     @else
     <div class="col-md-3">
         <label for="repeticion" class="form-label" id="repeticion">Repeticiones</label>
-        <input type="number" id="tipo" name="repeticiones" style="width:50px;">
+        <input type="number" id="tipo" name="repeticiones" style="width:50px;" required>
     </div>
 </div>
 @endif
@@ -73,7 +73,7 @@
     var tipo = document.getElementById("tipo");
     option.addEventListener('change',function(event){
         if(option.value=='1'){
-            
+
             console.log(option.value);
             console.log(label.innerHTML = "Repeticiones");
             console.log(tipo.name = "repeticiones");
@@ -84,6 +84,6 @@
             console.log(label.innerHTML = "Segundos");
             console.log(tipo.name = "duracion_segundos");
         }
-        
+
     });
 </script>

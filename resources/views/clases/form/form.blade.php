@@ -50,4 +50,14 @@
             @endif
         </div>
     </div>
+            
+
+            {!! Form::submit('Reservar', ['class' => 'btn btn-primary mt-2']) !!}
+
+            {!! Form::close() !!}
+
+        <div>
+    </div>
+</div>
+
 <div>

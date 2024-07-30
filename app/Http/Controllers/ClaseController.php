@@ -34,8 +34,20 @@ class ClaseController extends Controller
                 ->orWhere('descripcion', 'like', '%' . $request->buscar . '%');
         }
         $clases = $clases->paginate($limit)->appends($request->all());
-        return view('clases.index', compact('clases'));
-        //return response()->json($clases);
+
+    // ASIGNAR LOS EVENTOS AL CALENDARIO
+        $eventos = [];
+        foreach ($clases as $clase) {
+            $evento = [
+                'title' => $clase->nombreClase,
+                'start' => $clase->fecha.'T'.$clase->comienza,
+                'end' => $clase->fecha.'T'.$clase->termina,
+                
+            ];
+            array_push($eventos, $evento);
+        }
+        return view('clases.index', compact('clases','eventos'));
+        //return response()->json($eventos);
     }
 
     /**

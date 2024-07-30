@@ -145,6 +145,38 @@
         </div>
     </div>
 
+    <div id='calendar' style="background:white"></div>
+
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
+    <script>
+
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            navLinks: true,
+            navLinkDayClick: function(date, jsEvent) {
+                console.log('day', date.toISOString());
+                console.log('coords', jsEvent.pageX, jsEvent.pageY);
+            },
+            timeZone: 'UTC',
+            locale: 'es',
+          initialView: 'dayGridMonth',
+          headerToolbar: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+        },
+
+
+        events:  {!! json_encode($eventos) !!},
+        eventColor: 'purple'
+    
+    });
+        calendar.render();
+      });
+
+    </script>
+
     <!-- JS PARA FILTAR Y BUSCAR MEDIANTE PAGINADO -->
     <Script type="text/javascript">
         $('#limit').on('change', function() {

@@ -14,50 +14,17 @@ class RutinasEjercicios extends Component
     public $search;
     public $sort='rutinas_ejercicios.id_rutina_ejercicio';
     public $direction='asc';
-    public $select_ejercicio = 'rutinas_ejercicios.id_ejercicio';
-    public $select_serie = 'rutinas_ejercicios.serie_tipo';
-    public $time=0;
     protected $paginationTheme="bootstrap";
     public $count = 0;
     public $finaliza = false;
-    public $show = 'hide';
     public $showT = 'hide';
-
+    public $comienza;
     public $selectedRutina = "";
 
     public function updatedSelectedRutina($value)
     {
        $this->search = $value;
     }
-    public function updatedPage()
-    {
-        $this->showT = 'show';
-    }
-
-    public function siguiente()
-    {
-        $this->show = 'show';
-         $this->time++;
-    }
-        public function anterior()
-    {
-        $this->time--;
-    }
-    public function finaliza()
-    {
-        $this->time;
-        $this->finaliza = true;
-
-    }
-
-    public function redireccionar() {
-
-        // Luego, redirige a la nueva ruta
-        return redirect()
-        ->route('rutinaEjercicioxUser.index')
-        ->with('message', 'Finalizaste la rutina de ejercicio Satisfactoriamente.');
-    }
-
     public function render()
     {
     $rutinas= RutinaModel::all();
@@ -71,10 +38,11 @@ class RutinasEjercicios extends Component
         'ejercicios.nombre_ejercicio',
         'ejercicios.descripcion',
         'ejercicios.imagen_ejercicio',
+        'rutinas.id_rutina',
         'rutinas.nombre_rutina',
         'series.tipo'
         )
-    ->where('rutinas.nombre_rutina','like','%'.$this->search.'%')
+    ->where('rutinas.id_rutina','=',$this->search)
     ->orderBy($this->sort,$this->direction)
     ->paginate(3);
 
