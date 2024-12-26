@@ -51,7 +51,7 @@ class reservasController extends Controller
     {
         $reserva = new ReservaModel();
         $clase = ClaseModel::find($request->id_clase);
-        if($clase->cupo === 0){
+        if($clase->cupo <= 0){
              return redirect()->route('clases.index')->with('warning','No hay mas cupos disponibles');
         }else{
 

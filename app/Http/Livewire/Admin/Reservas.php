@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Admin;
 
 use Livewire\Component;
 use App\Models\ReservaModel;
+use App\Models\ClaseModel;
 use Livewire\WithPagination;
 
 class Reservas extends Component
@@ -36,8 +37,26 @@ class Reservas extends Component
             ->paginate(10);
         }
 
+        $clases = ClaseModel::all();
+        // ASIGNAR LOS EVENTOS AL CALENDARIO
+        $eventos = [];
+        foreach ($reservas as $clase) {
+            $evento = [
+                'id' => $clase->id_clase,
+                'title' => $clase->nombreClase,
+                'start' => $clase->fecha.'T'.$clase->comienza,
+                'end' => $clase->fecha.'T'.$clase->termina,
+                'description' => $clase->descripcion,
+                'cupo' => $clase->cupo
+                
+            ];
+            array_push($eventos, $evento);
+        }
 
-        return view('livewire.admin.reservas' ,compact('reservas'))->layout('reservas.index');
+
+        
+        return view('livewire.admin.reservas' ,compact('reservas','eventos','clases'))->layout('reservas.index');
+        //return dd(json_encode($clases));
     }
     
     public function order($sort){

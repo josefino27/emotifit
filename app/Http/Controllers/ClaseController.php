@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\ClaseModel;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Response;
+use DateTime;
 
 class ClaseController extends Controller
 {
@@ -69,24 +70,54 @@ class ClaseController extends Controller
     public function store(Request $request)
     {
         $clase = new ClaseModel();
+
         $clase = $this->createUpdateClases($request, $clase);
-        return redirect()
-            ->route('clases.index')
-            ->with('message', 'Registro Creado Satisfactoriamente.');
+        // return redirect()
+        //     ->route('clases.index')
+        //     ->with('message', 'Registro Creado Satisfactoriamente.');
+        return dd($clase);
     }
     public function createUpdateClases(Request $request, $clase)
-    {
-        $clase->nombreClase = $request->nombreClase;
-        $clase->cupo = $request->cupo;
-        $clase->fecha = $request->fecha;
-        $clase->comienza = $request->comienza;
-        $clase->termina = $request->termina;
-        $clase->descripcion = $request->descripcion;
-        if ($request->hasfile('imagen')) {
-            $clase->imagen = $request->file('imagen')->store('portafolio', 'public');
+    {   
+        $clasearray = []; // Asegúrate de que $clasearray esté definido
+        $inicio = new DateTime($request->comienza); // Suponiendo que $request->comienza es una hora en formato H:i
+        $fin = new DateTime($request->termina); // Suponiendo que $request->termina es una hora en formato H:i
+
+        while ($inicio < $fin) {
+            $clase = new ClaseModel(); // Crear una nueva instancia en cada iteración
+            
+            $hora_actual = $inicio->format('H:i');
+            $clase->nombreClase = $request->nombreClase;
+            $clase->cupo = $request->cupo;
+            $clase->fecha = $request->fecha;
+            $clase->comienza = $hora_actual;
+            
+            // Calcular la hora de terminación
+            $clase_termina = clone $inicio;
+            $clase_termina->modify('+' . $request->rango_horas . ' hours');
+            
+            // Si la clase termina después del fin de la disponibilidad, ajustarla
+            if ($clase_termina > $fin) {
+                $clase_termina = $fin;
+            }
+            
+            $clase->termina = $clase_termina->format('H:i');
+            $clase->descripcion = $request->descripcion;
+            
+            if ($request->hasfile('imagen')) {
+                $clase->imagen = $request->file('imagen')->store('portafolio', 'public');
+            }
+            
+            // Agregar la clase al array
+            array_push($clasearray, $clase);
+            
+            // Avanzar al siguiente intervalo
+            $inicio = clone $clase_termina;
         }
-        $clase->save();
-        return $clase;
+
+        //$clase->save();
+        return $clasearray;
+        //return dd($clase->imagen);
     }
     /**
      * Display the specified resource.
@@ -126,6 +157,7 @@ class ClaseController extends Controller
         return redirect()
             ->route('clases.index')
             ->with('message', 'Registro Actualizado Satisfactoriamente.');
+        //return dd($clase);
     }
 
     /**

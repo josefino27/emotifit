@@ -14,6 +14,12 @@
     </div>
     <div class="col-12">
         <div class="form-group">
+            <label for="">rango de horas</label>
+            <input type="number" name="rango_horas" class="form-control">
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="form-group">
             <label for="">Fecha</label>
             <input type="date" class="form-control" name="fecha" value="{{(isset($clase))?$clase->fecha:old('fecha')}}" required>
         </div>
@@ -39,7 +45,11 @@
     <div class="col-12">
         <div class="form-group">
             <label for="">imagen</label>
-            <input type="file" accept="image/*" class="form-control" name="imagen" value="{{(isset($clase))?$clase->imagen:old('imagen')}}" required>
+            @if(request()->routeIs('clases.edit'))
+            <input type="file" accept="image/*" class="form-control" name="imagen" value="{{(isset($clase))?$clase->imagen:old('imagen')}}">
+            @elseif(request()->routeIs('clases.create'))
+            <input type="file" accept="image/*" class="form-control" name="imagen" value="{{(isset($clase))?$clase->imagen:old('imagen')}}" require>
+            @endif
             @if(isset($clase))<td>
                 <img src="{{ asset('storage').'/'.$clase->imagen }}" width="200">
                 <span>
